@@ -7,10 +7,13 @@
 Đối tượng:
 
 -Khách Hàng
+
 -Phòng trọ
+
 -Giao dịch(Khách thuê trọ)
 
 # Thành viên:
 
 Nguyễn Ngọc Diệp (MSV:24100250)
+
 Nguyễn Thùy Dương (MSv: 24107946)

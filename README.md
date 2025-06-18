@@ -2,15 +2,30 @@
 
 Ứng dung quản lý nhà trọ
 
-# Describe and Analyse the Project
-
-Đối tượng:
+# Đối tượng
 
 -Khách Hàng
 
 -Phòng trọ
 
 -Giao dịch(Khách thuê trọ)
+
+# Miêu tả đối tượng
+-Khách hàng
+
+họ và tên
+tuổi
+số điện thoại
+địa chỉ 
+
+-Phòng trọ
+số phòng
+diện tích
+
+-Giao dịch(khách thuê trọ)
+ho va ten
+ngay thue 
+thoi han
 
 # Thành viên:
 

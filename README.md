@@ -14,17 +14,25 @@
 -Khách hàng
 
 họ và tên
+
 tuổi
+
 số điện thoại
+
 địa chỉ 
 
 -Phòng trọ
+
 số phòng
+
 diện tích
 
 -Giao dịch(khách thuê trọ)
+
 ho va ten
+
 ngay thue 
+
 thoi han
 
 # Thành viên:

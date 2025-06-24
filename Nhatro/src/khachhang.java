@@ -5,12 +5,16 @@ public class khachhang {
     String diachi;
     String gioitinh;
     String cmnd;
-    public String sethovaten(String name){
-        hovaten = name;
-        return hovaten;
+    public khachhang(String name, int tuoi, String sdt, String dc, String gt, String cmnd){
+        this.hovaten = name;
+        this.tuoi = tuoi;
+        this.sodienthoai = sdt;
+        this.diachi = dc;
+        this.gioitinh = gt;
+        this.cmnd = cmnd;
     }
-    public void gethovaten(){
-        System.out.println("Diep Duong");
-    }
+public hienthi(){
+    System.out.println(x:)
+}
 
 }

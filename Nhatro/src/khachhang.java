@@ -10,7 +10,7 @@ public class khachhang {
         return hovaten;
     }
     public void gethovaten(){
-        System.out.println();
+        System.out.println("Diep Duong");
     }
 
 }

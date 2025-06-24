@@ -8,7 +8,7 @@ public class phongtro {
         return maphong;
     }
     public void getmaphong(){
-        System.out.println();
+        System.out.println("123");
     }
 
 }

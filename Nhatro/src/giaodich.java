@@ -7,7 +7,7 @@ public class giaodich {
         return ngaygiaodich;
     }
     public void getngaygiaodich(){
-        System.out.println();
+        System.out.println("24/06/2025");
     }
 
 }

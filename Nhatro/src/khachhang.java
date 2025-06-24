@@ -5,7 +5,7 @@ public class khachhang {
     String diachi;
     String gioitinh;
     String cmnd;
-    public khachhang(String name, int tuoi, String sdt, String dc, String gt, String cmnd){
+    public khachhang(String name, String tuoi, String sdt, String dc, String gt, String cmnd){
         this.hovaten = name;
         this.tuoi = tuoi;
         this.sodienthoai = sdt;
@@ -14,7 +14,7 @@ public class khachhang {
         this.cmnd = cmnd;
     }
 public void hienthi(){
-    System.out.println(x."Ten khach hang: " + hovaten);
+    System.out.println("Ho va ten:" + hovaten);
 }
 
 }

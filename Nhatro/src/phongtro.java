@@ -3,12 +3,16 @@ public class phongtro {
     String maphong;
     String dientich;
     String noithat;
-    public String setmaphong(String ma){
-        maphong = ma;
-        return maphong;
+    public phongtro(String dcct, String mp, String dt, String nt){
+        this.diachicuthe = dcct;
+        this.maphong = mp;
+        this.dientich = dt;
+        this.noithat = nt;
+
     }
+
     public void getmaphong(){
-        System.out.println("123");
+        System.out.println("111");
     }
 
 }

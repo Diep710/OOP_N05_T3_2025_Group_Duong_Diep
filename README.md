@@ -19,19 +19,27 @@ số điện thoại
 
 địa chỉ 
 
+giới tính
+
+cmnd
+
 -Phòng trọ
 
-số phòng
+mã phòng
 
 diện tích
 
+địa chỉ cụ thể
+
+nội thất
+
 -Giao dịch(khách thuê trọ)
 
-ho va ten
+ngày giao dịch
 
-ngay thue 
+thời hạn
 
-thoi han
+tổng tiền
 
 # Thành viên:
 

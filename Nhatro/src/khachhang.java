@@ -13,8 +13,8 @@ public class khachhang {
         this.gioitinh = gt;
         this.cmnd = cmnd;
     }
-public hienthi(){
-    System.out.println(x:)
+public void hienthi(){
+    System.out.println(x."Ten khach hang: " + hovaten);
 }
 
 }

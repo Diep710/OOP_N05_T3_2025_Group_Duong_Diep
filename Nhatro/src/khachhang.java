@@ -13,7 +13,7 @@ public class khachhang {
         this.gioitinh = gt;
         this.cmnd = cmnd;
     }
-public void hienthi(){
+public void hienthi1(){
     System.out.println("Ho va ten:" + hovaten);
 }
 

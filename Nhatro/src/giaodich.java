@@ -8,8 +8,8 @@ public class giaodich {
         this.thoihan = th;
         this.tongtien = tt;
     }
-    public void getngaygiaodich(){
-        System.out.println("24/06/2025");
+    public void hienthi2(){
+        System.out.println("Ngay giao dich:" + ngaygiaodich);
     }
 
 }

@@ -11,8 +11,8 @@ public class phongtro {
 
     }
 
-    public void getmaphong(){
-        System.out.println("111");
+    public void hienthi3(){
+        System.out.println("ma phong:" + maphong);
     }
 
 }

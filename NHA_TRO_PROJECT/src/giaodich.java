@@ -10,6 +10,8 @@ public class giaodich {
     }
     public void hienthi2(){
         System.out.println("Ngay giao dich:" + ngaygiaodich);
+        System.out.println("Thoi han:" + thoihan);
+        System.out.println("Tong tien:" + tongtien);
     }
 
 }

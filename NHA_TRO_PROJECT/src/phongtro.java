@@ -12,7 +12,10 @@ public class phongtro {
     }
 
     public void hienthi3(){
+        System.out.println("dia chi cu the:" + diachicuthe);
         System.out.println("ma phong:" + maphong);
+        System.out.println("dien tich:" + dientich);
+        System.out.println("noi that:" + noithat);
     }
 
 }

@@ -1,7 +1,8 @@
 public class App {
     public static void main(String[] args) {
-        BreakAndContinue.testFor();
-    
+        testkhachhang.test1();
+        
+        
     
     }
 

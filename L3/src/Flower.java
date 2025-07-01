@@ -15,14 +15,16 @@ public class Flower {
         this.s = s;
     }
 
- Flower() { this(“hi”, 47); }
+    Flower() {
+        this("hi", 47);
+    }
 
- public int getPetalCount(){
-    return petalCount;
- }
+    public int getPetalCount() {
+        return petalCount;
+    }
 
- public void setPetalCount(int p){
-    petalCount =p;
+    public void setPetalCount(int p) {
+        petalCount = p;
 
- }
+    }
 }

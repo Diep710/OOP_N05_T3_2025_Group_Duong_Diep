@@ -1,7 +1,7 @@
 
 public class testFlower {
 
-    public static void test(){
+    public static void testf(){
 
         Flower f = new Flower();
         

@@ -1,8 +1,7 @@
 {
     "java.debug.settings.onBuildFailureProceed": true,
     "java.project.sourcePaths": [
-        "L3/test",
-        "L3/src"
+        "NHA_TRO_PROJECT/src"
     ],
     "java.project.referencedLibraries": []
 }

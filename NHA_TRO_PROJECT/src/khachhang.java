@@ -6,25 +6,7 @@ public class khachhang {
     String gioitinh;
     String cccd;
 
-    public String gethovaten(){
-        return hovaten;
-    }
-    public String gettuoi(){
-        return tuoi;
-    }
-    public String gethsodienthoai(){
-        return sodienthoai;
-    }
-    public String getdiachi(){
-        return diachi;
-    }
-    public String getgioitinh(){
-        return gioitinh;
-    }
-    public String getcccd(){
-        return cccd;
-    }
-    public void setkhachhang(String name, String tuoi, String sdt, String dc, String gt, String cccd){
+    public khachhang(String name, String tuoi, String sdt, String dc, String gt, String cccd){
         this.hovaten = name;
         this.tuoi = tuoi;
         this.sodienthoai = sdt;

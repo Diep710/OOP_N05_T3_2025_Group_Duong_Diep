@@ -3,7 +3,8 @@ public class App {
         testkhachhang.test1();
         testgiaodich.test2();
         testphongtro.test3();
-        
+        Book.test();
+        testFlower.test();
     
     }
 

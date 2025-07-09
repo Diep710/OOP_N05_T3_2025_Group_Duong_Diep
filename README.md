@@ -35,6 +35,10 @@ nội thất
 
 -Giao dịch(khách thuê trọ)
 
+Họ và tên
+
+mã phòng
+
 ngày giao dịch
 
 thời hạn

@@ -1,5 +1,10 @@
 # Ứng dung quản lý nhà trọ
 
+# Sơ đồ chức năng
+
+<img src "anh/project.jpg">
+
+
 # Đối tượng
 
 -Khách Hàng

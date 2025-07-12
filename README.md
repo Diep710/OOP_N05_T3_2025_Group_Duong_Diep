@@ -2,8 +2,7 @@
 
 # Sơ đồ chức năng
 
-anh/project.jpg
-
+![Image](https://github.com/user-attachments/assets/67846689-fdaa-4fea-8505-d0090e4fe766)
 
 # Đối tượng
 

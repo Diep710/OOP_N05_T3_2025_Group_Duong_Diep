@@ -2,7 +2,7 @@
 
 # Sơ đồ chức năng
 
-<img src "anh/project.jpg">
+<img src "https://github.com/Diep710/OOP_N05_T3_2025_Group_Duong_Diep/blob/main/anh/project.jpg">
 
 
 # Đối tượng

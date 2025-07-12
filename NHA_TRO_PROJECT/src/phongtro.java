@@ -1,3 +1,4 @@
+
 public class phongtro {
     String diachicuthe;
     String maphong;
@@ -17,5 +18,6 @@ public class phongtro {
         System.out.println("dien tich:" + dientich);
         System.out.println("noi that:" + noithat);
     }
+
 
 }

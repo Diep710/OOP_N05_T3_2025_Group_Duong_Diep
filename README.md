@@ -2,7 +2,7 @@
 
 # Sơ đồ chức năng
 
-< img src anh/project.jpg >
+anh/project.jpg
 
 
 # Đối tượng

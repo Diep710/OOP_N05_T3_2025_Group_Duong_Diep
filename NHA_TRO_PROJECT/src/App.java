@@ -6,7 +6,8 @@ public class App {
         //testphongtro.test3();
         //Book.test();
         //testFlower.testf();
-        testTime.test();
+        //testTime.test();
+        testCollection.test();
 
     
     }

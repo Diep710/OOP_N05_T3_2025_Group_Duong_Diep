@@ -1,6 +1,8 @@
 public class testListphongtro {
     public static void test(){
-        Book obj1 = new Book("1", "test1");
-        Book obj2 = new Book("2", "test2");
+        phongtro p1 = new phongtro("1", "test1");
+        phongtro p2 = new phongtro("2", "test2");
+    }
+        
 
 }

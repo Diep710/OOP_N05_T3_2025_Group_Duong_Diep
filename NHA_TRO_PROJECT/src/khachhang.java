@@ -6,9 +6,9 @@ public class khachhang {
     String gioitinh;
     String cccd;
 
-    public khachhang(String name, String tuoi, String sdt, String dc, String gt, String cccd){
+    public khachhang(String name, String age, String sdt, String dc, String gt, String cccd){
         this.hovaten = name;
-        this.tuoi = tuoi;
+        this.tuoi = age;
         this.sodienthoai = sdt;
         this.diachi = dc;
         this.gioitinh = gt;
@@ -30,8 +30,8 @@ public String sethovaten(String name){
     public void gethovaten(){
         System.out.println("Ten user: " + hovaten);
     }
-    public String settuoi(String tuoi){
-    tuoi = tuoi;
+    public String settuoi(String age){
+    tuoi = age;
         return tuoi;
     }
     public void gettuoi(){

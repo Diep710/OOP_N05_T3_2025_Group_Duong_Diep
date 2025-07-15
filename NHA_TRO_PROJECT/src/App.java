@@ -7,7 +7,8 @@ public class App {
         //Book.test();
         //testFlower.testf();
         //testTime.test();
-       // testCollection.test();
+        testCollection.test();
+        
 
     
     }

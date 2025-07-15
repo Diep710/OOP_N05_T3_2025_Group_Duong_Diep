@@ -1,5 +1,5 @@
 import java.util.List;
-
+import java.util.ArrayList;
 public class quanlipt {
     List<phongtro>  danhsach = new ArrayList<>();
     public void themphongtro(phongtro pt){

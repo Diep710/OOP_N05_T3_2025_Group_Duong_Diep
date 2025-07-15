@@ -1,23 +1,23 @@
- import java.util.*;
+import java.util.*;
 import java.util.List;
 import java.util.ArrayList;
 public class KhachHangManager {
-    private List<khachhang> danhSach = new ArrayList<>();
+    private List<KhachHang> danhSach = new ArrayList<KhachHang>();
 
-    public void themKhachHang(khachhang kh) {
+    public void themKhachHang(KhachHang kh) {
         danhSach.add(kh);
-        System.out.println(" Đã thêm khách hàng: " + kh.gethovaten());
+        System.out.println("Đã thêm khách hàng:" + kh.gethovaten());
     }
 
     public void hienThiKhachHang() {
         System.out.println(" Danh sách khách hàng:");
-        for (khachhang kh : danhSach) {
+        for (KhachHang kh : danhSach) {
             System.out.println("Tên :" + kh.gethovaten() + " | CCCD: " + kh.getcccd());
         }
     }
 
     public void suaKhachHang(String cccd, String tenMoi) {
-        for (khachhang kh : danhSach) {
+        for (KhachHang kh : danhSach) {
             if (kh.getcccd().equals(cccd)) {
                 kh.sethovaten(tenMoi);
                 System.out.println(" Đã cập nhật tên khách hàng.");

@@ -6,13 +6,13 @@ public class khachhang {
     String gioitinh;
     String cccd;
 
-    public khachhang(String name, String age, String sdt, String dc, String gt, String cccd){
+    public khachhang(String name, String age, String sdt, String dc, String gt, String cc){
         this.hovaten = name;
         this.tuoi = age;
         this.sodienthoai = sdt;
         this.diachi = dc;
         this.gioitinh = gt;
-        this.cccd = cccd;
+        this.cccd = cc;
 
     }
 public void hienthi1(){
@@ -58,8 +58,8 @@ public String sethovaten(String name){
     public void getgioitinh(){
         System.out.println("Gioi tinh user: " + gioitinh);
     }
-    public String setcccd(String cccd){
-        cccd = cccd;
+    public String setcccd(String cc){
+        cccd = cc;
         return cccd;
     }
     public void getcccd(){

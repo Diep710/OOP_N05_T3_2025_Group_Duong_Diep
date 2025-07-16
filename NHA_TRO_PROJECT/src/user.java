@@ -16,8 +16,8 @@ public class user {
     public void gethovaten(){
         System.out.println("Ten user: " + hovaten);
     }
-    public String settuoi(String tuoi){
-    tuoi = tuoi;
+    public String settuoi(String age){
+    tuoi = age;
         return tuoi;
     }
     public void gettuoi(){
@@ -44,8 +44,8 @@ public class user {
     public void getgioitinh(){
         System.out.println("Gioi tinh user: " + gioitinh);
     }
-    public String setcccd(String cccd){
-        cccd = cccd;
+    public String setcccd(String cc){
+        cccd = cc;
         return cccd;
     }
     public void getcccd(){

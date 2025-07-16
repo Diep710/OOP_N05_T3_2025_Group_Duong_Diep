@@ -7,9 +7,9 @@ public class App {
         //Book.test();
         //testFlower.testf();
         //testTime.test();
-        TestListKhachhang.test();
+        //TestListKhachhang.test();
         TestListphongtro.test();
-        TestListgiaodich.test();
+        //TestListgiaodich.test();
 
 
 

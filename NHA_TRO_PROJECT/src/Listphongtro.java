@@ -22,7 +22,6 @@ public class Listphongtro {
         return ptro;
     }
     public List<phongtro> Edit(String mp) {
-
         for (int i = 0; i < ptro.size(); i++) {
             if (ptro.get(i).maphong.equals(mp)) {
                 // to do

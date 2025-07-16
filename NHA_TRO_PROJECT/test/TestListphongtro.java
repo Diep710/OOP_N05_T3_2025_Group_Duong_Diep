@@ -11,6 +11,7 @@ public class TestListphongtro {
     Listphongtro lpt = new Listphongtro(Listphongtro);
     lpt.Edit("103");
     lpt.printphongtro();
+    
     }
 }
 

@@ -43,7 +43,7 @@ public class ListKhachhang {
        public void printkhachhang() {
         for (int i = 0; i < kh.size(); i++) {
 
-            System.out.println("Khachhang :" + kh.get(i).hovaten + " " + kh.get(i).hovaten);
+            System.out.println("Khachhang :" + kh.get(i).hovaten + " " );
 
         }
     }

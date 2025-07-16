@@ -29,7 +29,7 @@ public class Listphongtro {
                 System.out.println("Nhap ma phong muon sua doi: ");
                 Scanner scanName = new Scanner(System.in);
                 String newName = scanName.nextLine();
-                ptro.get(i).noithat = newName;
+                ptro.get(i).maphong = newName;
 
             }
         }
@@ -40,7 +40,7 @@ public class Listphongtro {
     public void printphongtro() {
         for (int i = 0; i < ptro.size(); i++) {
 
-            System.out.println("Ma phong tro :" + ptro.get(i).maphong + " " + ptro.get(i).noithat);
+            System.out.println("Ma phong tro :" + ptro.get(i).maphong + " " );
 
         }
     }

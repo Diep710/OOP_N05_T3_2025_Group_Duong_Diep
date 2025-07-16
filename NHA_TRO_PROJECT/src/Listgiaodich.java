@@ -43,7 +43,7 @@ public class Listgiaodich {
        public void printgiaodich() {
         for (int i = 0; i < gd.size(); i++) {
 
-            System.out.println("Giao dich :" + gd.get(i).hovaten + " " + gd.get(i).hovaten);
+            System.out.println("Giao dich :" + gd.get(i).hovaten + " " );
 
         }
     }

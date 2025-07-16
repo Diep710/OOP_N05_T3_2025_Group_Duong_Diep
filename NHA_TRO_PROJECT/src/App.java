@@ -7,7 +7,11 @@ public class App {
         //Book.test();
         //testFlower.testf();
         //testTime.test();
-        //testCollection.test();
+        TestListKhachhang.test();
+        testListphongtro.test();
+        //testListgiaodich.test();
+
+
 
 
     

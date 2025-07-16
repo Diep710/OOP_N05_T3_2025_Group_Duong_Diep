@@ -18,5 +18,40 @@ public class giaodich {
         System.out.println("Thoi han:" + thoihan);
         System.out.println("Tong tien:" + tongtien);
     }
-
+    public String sethovaten(String name){
+    hovaten = name;
+        return hovaten;
+    }
+    public void gethovaten(){
+        System.out.println("Ten user: " + hovaten);
+    }
+    public String setmaphong(String mp){
+    maphong = mp;
+        return maphong;
+    }
+    public void getmaphong(){
+        System.out.println("Ma phong user: " + maphong);
+    }
+    public String setngaygiaodich(String ngd){
+        ngaygiaodich = ngd;
+        return ngaygiaodich;
+    }
+    public void gethngaygiaodich(){
+        System.out.println("Ngay giao dich user: " + ngaygiaodich);
+    }
+    public String setthoihan(String th){
+        thoihan = th;
+        return thoihan;
+    }
+    public void getthoihan(){
+        System.out.println("Thoi han user: " + thoihan);
+    }
+    public String settongtien(String tt){
+        tongtien = tt;
+        return tongtien;
+    }
+    public void gettongtien(){
+        System.out.println("Tong tien user: " + tongtien);
+    }
 }
+

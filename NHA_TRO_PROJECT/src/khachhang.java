@@ -5,6 +5,7 @@ public class khachhang {
     String diachi;
     String gioitinh;
     String cccd;
+    public khachhang(){}
 
     public khachhang(String name, String age, String sdt, String dc, String gt, String cccd){
         this.hovaten = name;

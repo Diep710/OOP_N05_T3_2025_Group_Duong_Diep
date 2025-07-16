@@ -8,8 +8,8 @@ public class App {
         //testFlower.testf();
         //testTime.test();
         TestListKhachhang.test();
-        testListphongtro.test();
-        //testListgiaodich.test();
+        TestListphongtro.test();
+        TestListgiaodich.test();
 
 
 

@@ -33,7 +33,7 @@ public class Listgiaodich {
                 System.out.println("Nhap ten khach hang muon sua doi: ");
                 Scanner scanName = new Scanner(System.in);
                 String newName = scanName.nextLine();
-                gd.get(i).hovaten = newName;
+                gd.get(i).thoihan = newName;
 
             }
         }
@@ -43,7 +43,7 @@ public class Listgiaodich {
        public void printgiaodich() {
         for (int i = 0; i < gd.size(); i++) {
 
-            System.out.println("Giao dich :" + gd.get(i).hovaten + " " );
+            System.out.println("Giao dich :" + gd.get(i).hovaten + " " + gd.get(i).maphong + " " + gd.get(i).thoihan + " "  );
 
         }
     }

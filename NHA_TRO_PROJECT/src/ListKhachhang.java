@@ -33,7 +33,7 @@ public class ListKhachhang {
                 System.out.println("Nhap ten khach hang muon sua doi: ");
                 Scanner scanName = new Scanner(System.in);
                 String newName = scanName.nextLine();
-                kh.get(i).hovaten = newName;
+                kh.get(i).tuoi = newName;
 
             }
         }
@@ -43,7 +43,7 @@ public class ListKhachhang {
        public void printkhachhang() {
         for (int i = 0; i < kh.size(); i++) {
 
-            System.out.println("Khachhang :" + kh.get(i).hovaten + " " );
+            System.out.println("Khachhang :" + kh.get(i).hovaten + " " + kh.get(i).tuoi + " "  );
 
         }
     }

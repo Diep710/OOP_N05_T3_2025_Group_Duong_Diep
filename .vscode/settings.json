@@ -1,8 +1,9 @@
 {
     "java.debug.settings.onBuildFailureProceed": true,
     "java.project.sourcePaths": [
+        "NHA_TRO_PROJECT/test",
         "NHA_TRO_PROJECT/src",
-        "NHA_TRO_PROJECT/test"
+        "NHA_TRO_PROJECT/review"
     ],
     "java.project.referencedLibraries": []
 }

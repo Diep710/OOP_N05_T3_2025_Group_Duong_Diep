@@ -1,45 +1,45 @@
 import java.util.List;
 import java.util.Scanner;
 public class Listphongtro {
-    public List<phongtro> ptro;
-    public Listphongtro(List<phongtro> pt) {
-        this.ptro = pt;
+    public List<phongtro> dsptro;
+    public Listphongtro(List<phongtro> dsptro) {
+        this.dsptro = dsptro;
     }
     public List<phongtro> getList() {
-        return ptro;
+        return dsptro;
     }
-    public List<phongtro> Create(phongtro pt) {
-        ptro.add(pt);
-        return ptro;
+    public void create(phongtro pt) {
+        dsptro.add(pt);
+        System.out.println("Đã thêm phòng trọ");
     }
 
-    public List<phongtro> Delete(String mp) {
-        for (int i = 0; i < ptro.size(); i++) {
-            if (ptro.get(i).maphong.equals(mp)) {
-                ptro.remove(i);
+    public void delete(String mp) {
+        for (int i = 0; i < dsptro.size(); i++) {
+            if (dsptro.get(i).maphong.equals(mp)) {
+                dsptro.remove(i);
+                System.out.println("Đã xoá phòng mã: " + mp);
+                return;
             }
         }
-        return ptro;
+         System.out.println(" Không tìm thấy mã phòng: " + mp);
     }
-    public List<phongtro> Edit(String mp) {
-        for (int i = 0; i < ptro.size(); i++) {
-            if (ptro.get(i).maphong.equals(mp)) {
-                // to do
-                System.out.println("Nhap ma phong muon sua doi: ");
-                Scanner scanName = new Scanner(System.in);
-                String newName = scanName.nextLine();
-                ptro.get(i).diachicuthe = newName;
-
+    public void edit(String mp, String diachimoi) {
+        for (int i = 0; i < dsptro.size(); i++) {
+             phongtro pt = dsptro.get(i);
+            if (pt.maphong.equals(mp)) {
+                pt.setdiachicuthe(diachimoi);
+                System.out.println("Đã cập nhật phòng mã: " + mp);
+                return;
             }
         }
-
-        return ptro;
+        System.out.println(" Không tìm thấy phòng ");
+                
     }
 
     public void printphongtro() {
-        for (int i = 0; i < ptro.size(); i++) {
+        for (int i = 0; i < dsptro.size(); i++) {
 
-            System.out.println("phong tro :" + ptro.get(i).maphong + " " + ptro.get(i).diachicuthe + " " );
+            System.out.println("phong tro :" + dsptro.get(i).maphong + " " + dsptro.get(i).diachicuthe + " " );
 
         }
     }

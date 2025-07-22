@@ -43,5 +43,13 @@ public class Listphongtro {
 
         }
     }
+    public phongtro timphongtro(String maPhong) {
+    for (phongtro pt : dsptro) {
+        if (pt.maphong.equals(maPhong)) {
+            return pt;
+        }
+    }
+    return null;
+}
 
 }

@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
-public class Listgiaodich {
 
+public class Listgiaodich {
     public List<giaodich> gd;
 
     public Listgiaodich(List<giaodich> g) {
@@ -15,6 +15,7 @@ public class Listgiaodich {
         gd.add(g);
         return gd;
     }
+
 
     public List<giaodich> Delete(String name) {
         for (int i = 0; i < gd.size(); i++) {
@@ -48,3 +49,4 @@ public class Listgiaodich {
         }
     }
 }
+

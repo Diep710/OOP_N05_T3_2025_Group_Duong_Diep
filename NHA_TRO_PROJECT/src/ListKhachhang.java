@@ -25,21 +25,20 @@ public class ListKhachhang {
         return kh;
 
 }
- public List<khachhang> Edit(String name) {
+public class Listkhachhang {
+    private final Scanner scanner = new Scanner(System.in);
 
+    public List<khachhang> Edit(String name) {
         for (int i = 0; i < kh.size(); i++) {
             if (kh.get(i).hovaten.equals(name)) {
-                // to do
-                System.out.println("Nhap ten khach hang muon sua doi: ");
-                Scanner scanName = new Scanner(System.in);
-                String newName = scanName.nextLine();
+                System.out.print("Nhap ten khach hang muon sua doi: ");
+                String newName = scanner.nextLine();
                 kh.get(i).tuoi = newName;
-
             }
         }
-
         return kh;
     }
+}
        public void printkhachhang() {
         for (int i = 0; i < kh.size(); i++) {
 
@@ -47,5 +46,4 @@ public class ListKhachhang {
 
         }
     }
-  
 }

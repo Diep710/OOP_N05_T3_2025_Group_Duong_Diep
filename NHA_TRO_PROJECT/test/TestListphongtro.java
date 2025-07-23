@@ -9,7 +9,7 @@ public class TestListphongtro {
     Listphongtro.add(p1);
     Listphongtro.add(p2);
     Listphongtro lpt = new Listphongtro(Listphongtro);
-    lpt.Edit("103");
+    lpt.edit("103","hai phong");
     lpt.printphongtro();
     
     }

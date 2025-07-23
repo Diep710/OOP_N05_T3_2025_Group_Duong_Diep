@@ -30,7 +30,7 @@ public class Giaodichmoi {
         // Cập nhật trạng thái phòng
         phong.setTrangThai(false);
 
-        System.out.println("✅ Giao dịch thuê trọ thành công!");
+        System.out.println(" Giao dịch thuê trọ thành công!");
     }
 
 }

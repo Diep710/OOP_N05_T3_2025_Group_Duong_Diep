@@ -1,31 +1,22 @@
-import java.util.List;
-
 public class Book {
-    public String BookID;
-    public String BookName;
-
-    public Book() {
-    }
-
+    private String bookID;
+    private String bookName;
+    public Book() {}
     public Book(String id, String name) {
-        BookID = id;
-        BookName = name;
+        this.bookID = id;
+        this.bookName = name;
     }
 
     public void setID(String id) {
-        BookID = id;
+        this.bookID = id;
     }
-
     public String getID() {
-        return BookID;
+        return this.bookID;
     }
-
     public void setName(String name) {
-        BookName = name;
+        this.bookName = name;
     }
-
     public String getName() {
-        return BookName;
+        return this.bookName;
     }
-
 }

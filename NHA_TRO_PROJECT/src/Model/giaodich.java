@@ -23,35 +23,35 @@ public class giaodich {
         return hovaten;
     }
     public void gethovaten(){
-        System.out.println("Ten user: " + hovaten);
+        System.out.println("Ten khach hang: " + hovaten);
     }
     public String setmaphong(String mp){
     maphong = mp;
         return maphong;
     }
     public void getmaphong(){
-        System.out.println("Ma phong user: " + maphong);
+        System.out.println("Ma phong : " + maphong);
     }
     public String setngaygiaodich(String ngd){
         ngaygiaodich = ngd;
         return ngaygiaodich;
     }
     public void gethngaygiaodich(){
-        System.out.println("Ngay giao dich user: " + ngaygiaodich);
+        System.out.println("Ngay giao dich : " + ngaygiaodich);
     }
     public String setthoihan(String th){
         thoihan = th;
         return thoihan;
     }
     public void getthoihan(){
-        System.out.println("Thoi han user: " + thoihan);
+        System.out.println("Thoi han : " + thoihan);
     }
     public String settongtien(String tt){
         tongtien = tt;
         return tongtien;
     }
     public void gettongtien(){
-        System.out.println("Tong tien user: " + tongtien);
+        System.out.println("Tong tien : " + tongtien);
     }
 }
 

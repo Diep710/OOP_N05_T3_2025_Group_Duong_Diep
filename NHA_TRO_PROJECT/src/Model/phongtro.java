@@ -1,4 +1,3 @@
-
 public class phongtro {
     String diachicuthe;
     String maphong;

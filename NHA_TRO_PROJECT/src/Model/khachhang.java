@@ -29,41 +29,41 @@ public String sethovaten(String name){
         return hovaten;
     }
     public void gethovaten(){
-        System.out.println("Ten user: " + hovaten);
+        System.out.println("Ten khach hang: " + hovaten);
     }
     public String settuoi(String age){
     tuoi = age;
         return tuoi;
     }
     public void gettuoi(){
-        System.out.println("Tuoi user: " + tuoi);
+        System.out.println("Tuoi khach hang: " + tuoi);
     }
     public String sethsodienthoai(String sdt){
         sodienthoai = sdt;
         return sodienthoai;
     }
     public void gethsodienthoai(){
-        System.out.println("Sdt user: " + sodienthoai);
+        System.out.println("Sdt khach hang: " + sodienthoai);
     }
     public String setdiachi(String dc){
         diachi = dc;
         return diachi;
     }
     public void getdiachi(){
-        System.out.println("Dia chi user: " + diachi);
+        System.out.println("Dia chi khach hang: " + diachi);
     }
     public String setgioitinh(String gt){
         gioitinh = gt;
         return gioitinh;
     }
     public void getgioitinh(){
-        System.out.println("Gioi tinh user: " + gioitinh);
+        System.out.println("Gioi tinh khach hang: " + gioitinh);
     }
     public String setcccd(String cc){
         cccd = cc;
         return cccd;
     }
     public void getcccd(){
-        System.out.println("Cccd user: " + cccd);
+        System.out.println("Cccd khach hang: " + cccd);
     }
 }

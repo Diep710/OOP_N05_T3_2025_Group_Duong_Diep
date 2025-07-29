@@ -9,7 +9,7 @@ public class TestListKhachhang {
     ListKhachhang.add(kh1);
     ListKhachhang.add(kh2);
     ListKhachhang lkh = new ListKhachhang(ListKhachhang);
-    lkh.Edit("Nguyen Van C");
+    //lkh.Edit("Nguyen Van C");
     lkh.printkhachhang();
     }
 }

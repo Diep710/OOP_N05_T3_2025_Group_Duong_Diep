@@ -10,7 +10,7 @@ public class App {
         //TestListKhachhang.test();
         //TestListphongtro.test();
         //TestListgiaodich.test();
-        testStudent.test();
+        //testStudent.test();
 
 
 

@@ -1,4 +1,4 @@
-public class testkhachhang {
+public class TestKhachhang {
 
     public static void test1(){
 

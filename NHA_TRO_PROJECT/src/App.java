@@ -8,7 +8,7 @@ public class App {
         //testFlower.testf();
         //testTime.test();
         //TestListKhachhang.test();
-        //TestListphongtro.test();
+        TestQuanlyPhongtro.test();
         //TestListgiaodich.test();
         //testStudent.test();
 

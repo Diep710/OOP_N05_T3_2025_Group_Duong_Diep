@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    Nha tro Duong Diep 
+    <title>Welcome to Nha tro Duong Diep</title> 
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  
+   
+</head>
+  <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
+<body>
+   
+
+   
+
+    </div>
+    
+
+
+    <table class="table table-striped">
+        <thead >
+            <tr ><p style="font-size:xx-large; color:darkcyan ;text-align: center;">List of User</p></tr>
+            <tr>
+                <th><i class="bi bi-person-vcard"></i> phong tro ID </th>
+                <th><i class="bi bi-person-circle"></i> dia chi phong</th>
+                
+              
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr th:each="list: ${ListofPhongtro}">
+                <td data-sortable="true"><span th:text="${list.maphong}"> Ma </span></td>
+                <td><span th:text="${list.diachicuthe}"> Ten </span></td>
+              
+                              
+                <td><button type="button" class="btn btn-success bi bi-brush"> </button></td>
+                <td><button type="button" class="btn btn-danger bi bi-calendar2-x"> </button></td>
+                
+
+
+            </tr>
+        </tbody>
+    </table>
+
+
+     <p><Buidling.....</p>
+    <p>Phongtro</p>
+
+    <p>test bien ten </p>
+
+    <p>[[${myphongtro.getMaphong()}]]</p>
+
+
+ 
+    <div th:each="list: ${ListofPhongtro}">
+    <div>
+        <p th:text=${list.maphong}/>
+         <p th:text=${list.diachicuthe}/>
+    </div>
+</body>
+</html>

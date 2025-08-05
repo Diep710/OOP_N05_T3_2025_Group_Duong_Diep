@@ -2,10 +2,10 @@ package com.example.servingwebcontent.Model;
 
 public class Phongtro {
 
-    String maphong;
-    String diachicuthe;
-    String dientich;
-    String noithat;
+    public String maphong;
+    public String diachicuthe;
+    public String dientich;
+    public String noithat;
 public Phongtro(){}
     public Phongtro(String Idpt, String dcct, String dt, String nt){
         this.maphong = Idpt;

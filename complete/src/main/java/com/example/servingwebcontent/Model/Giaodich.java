@@ -2,11 +2,11 @@ package com.example.servingwebcontent.Model;
 
 public class Giaodich {
 
-    String makhachhang;
-    String maphong;
-    String ngaygiaodich;
-    String thoihan;
-    String tongtien;
+    public String makhachhang;
+    public String maphong;
+    public String ngaygiaodich;
+    public String thoihan;
+    public String tongtien;
     public Giaodich(){}
     public Giaodich(String Idkh, String Idpt, String ngd, String th, String tt){
         this.makhachhang = Idkh;

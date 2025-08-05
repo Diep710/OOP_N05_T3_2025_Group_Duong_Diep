@@ -4,11 +4,11 @@ public class Khachhang {
 
     public String makhachhang;
     public String hovaten;
-    String tuoi;
-    String sodienthoai;
-    String diachi;
-    String gioitinh;
-    String cccd;
+    public String tuoi;
+    public String sodienthoai;
+    public String diachi;
+    public String gioitinh;
+    public String cccd;
     public Khachhang(){}
 
     public Khachhang(String Idkh, String name, String age, String sdt, String dc, String gt, String cc){

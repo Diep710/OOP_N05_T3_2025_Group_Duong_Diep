@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    Nha tro Duong Diep 
+    <title>Welcome to Nha tro Duong Diep</title> 
+   
+</head>
+<body>
+    <p><Buidling.....</p>
+    <p>Khachhang</p>
+    <p>"${Khachhang}"</p>
+
+    <p th:text="|Hello, ${Khachhang}!|" />
+    <p th:text="${Khachhang}"/>
+    <div th:each="list: ${ListofKhachhang}">
+    <div>
+        <p th:text=${list.name}/>
+    </div>
+
+    </div>
+    
+
+</body>
+</html>

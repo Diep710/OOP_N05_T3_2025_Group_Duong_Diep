@@ -1,9 +1,13 @@
 package com.example.servingwebcontent;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.servingwebcontent.Model.Khachhang;
 
 @Controller
 public class GreetingController {
@@ -13,5 +17,21 @@ public class GreetingController {
 		model.addAttribute("name", name);
 		return "greeting";
 	}
+
+	@GetMapping("/khachhang")
+	public String KhanhcHang(Model model) {
+		Khachhang kh = new Khachhang("id01", "Nguyen", "20", "096877773", "Hanoi", "Name", "CC89787828288");
+		Khachhang kh02 = new Khachhang("id02", "Tran", "20", "096877773", "Hanoi", "Name", "CC89787828288");
+		ArrayList<Khachhang> lkh = new ArrayList<Khachhang>();
+		lkh.add(kh);
+		lkh.add(kh02);
+		
+		model.addAttribute("mykhachhang", kh);
+        model.addAttribute("ListofKhachhang", lkh);
+		//view html
+		return "Khachhang";
+	}
+
+
 
 }

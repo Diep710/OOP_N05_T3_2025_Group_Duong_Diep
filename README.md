@@ -15,6 +15,8 @@
 # Miêu tả đối tượng
 -Khách hàng
 
+mã khách hàng
+
 họ và tên
 
 tuổi
@@ -39,7 +41,7 @@ nội thất
 
 -Giao dịch(khách thuê trọ)
 
-Họ và tên
+mã khách hàng
 
 mã phòng
 

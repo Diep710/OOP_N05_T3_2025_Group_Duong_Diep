@@ -14,13 +14,42 @@
   
    
 </head>
-  <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">DiepDuong</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Listkhachhang</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Phongtro
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Ha Dong</a></li>
+            <li><a class="dropdown-item" href="#">Thanh Xuan</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
 <body>
    
 
@@ -36,6 +65,9 @@
             <tr>
                 <th><i class="bi bi-person-vcard"></i> phong tro ID </th>
                 <th><i class="bi bi-person-circle"></i> dia chi phong</th>
+                <th><i class="bi bi-person-circle"></i> dien tich</th>
+                <th><i class="bi bi-person-circle"></i> noi that</th>
+
                 
               
             </tr>
@@ -44,7 +76,9 @@
 
             <tr th:each="list: ${ListofPhongtro}">
                 <td data-sortable="true"><span th:text="${list.maphong}"> Ma </span></td>
-                <td><span th:text="${list.diachicuthe}"> Ten </span></td>
+                <td><span th:text="${list.diachicuthe}"> Dia chi </span></td>
+                <td><span th:text="${list.dientich}"> Dientich </span></td>
+                <td><span th:text="${list.noithat}"> Noi that </span></td>
               
                               
                 <td><button type="button" class="btn btn-success bi bi-brush"> </button></td>
@@ -57,19 +91,6 @@
     </table>
 
 
-     <p><Buidling.....</p>
-    <p>Phongtro</p>
-
-    <p>test bien ten </p>
-
-    <p>[[${myphongtro.getMaphong()}]]</p>
-
-
- 
-    <div th:each="list: ${ListofPhongtro}">
-    <div>
-        <p th:text=${list.maphong}/>
-         <p th:text=${list.diachicuthe}/>
-    </div>
+     
 </body>
 </html>

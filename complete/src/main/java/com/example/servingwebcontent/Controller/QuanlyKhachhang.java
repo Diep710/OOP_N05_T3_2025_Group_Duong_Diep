@@ -24,7 +24,7 @@ public class QuanlyKhachhang {
 
 		model.addAttribute("listOfArray", listOfArray);
 
-		return "phongtrolist";
+		return "khachhanglist";
 	}
     @GetMapping("/khachhang/add")
     public String showAddForm(Model model) {

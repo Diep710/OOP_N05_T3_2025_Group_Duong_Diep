@@ -20,10 +20,10 @@ public class Giaodich {
     public void setMakhachhang(String Idkh){
         this.makhachhang = Idkh;
     }
-    public String getMaphongtro(){
+    public String getMaphong(){
         return this.maphong;
     }
-    public void setMaphongtro(String Idpt){
+    public void setMaphong(String Idpt){
         this.maphong = Idpt;
     }
     public String getNgaygiaodich(){

@@ -107,7 +107,7 @@ public class PhongtroAiven {
         }
     }
 
-    // DELETE - Xóa khách hàng
+    // DELETE - Xóa phòng trọ
     public boolean deletePhongtro(String maphong) {
         try {
             myDBConnection my = new myDBConnection();

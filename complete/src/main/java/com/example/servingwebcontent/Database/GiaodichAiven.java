@@ -1,5 +1,6 @@
 package com.example.servingwebcontent.Database;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class GiaodichAiven {
                 System.out.println(makhachhang + " " + maphong + " " + ngaygiaodich + " " + thoihan + " " + tongtien);
 
                 giaodich.setMakhachhang(makhachhang);
-                giaodich.setMaphongtro(maphong);
+                giaodich.setMaphong(maphong);
                 giaodich.setNgaygiaodich(ngaygiaodich);
                 giaodich.setThoihan(thoihan);
                 giaodich.setTongtien(tongtien);
@@ -62,6 +63,69 @@ public class GiaodichAiven {
 
         return items;
 
+    }
+    public boolean createGiaodich(Giaodich gd) {
+        try {
+            myDBConnection my = new myDBConnection();
+            PreparedStatement ps = my.getMyConnPrepared(
+                "INSERT INTO quanLyNhaTro.giaodichlist (makhachhang, maphong, ngaygiaodich, thoihan, tongtien) VALUES (?, ?, ?, ?, ?)"
+            );
+            ps.setString(1, gd.getMakhachhang());
+            ps.setString(2, gd.getMaphong());
+            ps.setString(3, gd.getNgaygiaodich());
+            ps.setString(4, gd.getThoihan());
+            ps.setString(5, gd.getTongtien());
+
+            int rows = ps.executeUpdate();
+            ps.close();
+            return rows > 0;
+        } catch (Exception e) {
+            System.out.println("Error in CREATE giaodich: " + e);
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // UPDATE - Cập nhật thông tin giao dịch
+    public boolean updateGiaodich(Giaodich gd) {
+        try {
+            myDBConnection my = new myDBConnection();
+            PreparedStatement ps = my.getMyConnPrepared(
+                "UPDATE quanLyNhaTro.giaodichlist SET maphong=?, ngaygiaodich=?, thoihan=?, tongtien=? WHERE makhachhang=?"
+            );
+            ps.setString(1, gd.getMaphong());
+            ps.setString(2, gd.getNgaygiaodich());
+            ps.setString(3, gd.getThoihan());
+            ps.setString(4, gd.getTongtien());
+            ps.setString(5, gd.getMakhachhang());
+
+            int rows = ps.executeUpdate();
+            ps.close();
+            return rows > 0;
+        } catch (Exception e) {
+            System.out.println("Error in UPDATE Giaodich: " + e);
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // DELETE - Xóa giao dịch
+    public boolean deleteGiaodich(String makhachhang) {
+        try {
+            myDBConnection my = new myDBConnection();
+            PreparedStatement ps = my.getMyConnPrepared(
+                "DELETE FROM quanLyNhaTro.giaodichlist WHERE makhachhang=?"
+            );
+            ps.setString(1, makhachhang);
+
+            int rows = ps.executeUpdate();
+            ps.close();
+            return rows > 0;
+        } catch (Exception e) {
+            System.out.println("Error in DELETE Giao dich: " + e);
+            e.printStackTrace();
+            return false;
+        }
     }
     
 }

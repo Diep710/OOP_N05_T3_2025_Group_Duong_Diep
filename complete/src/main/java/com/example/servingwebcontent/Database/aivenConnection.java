@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 
-
-
 public class aivenConnection {
   
     public void aivenConn() {

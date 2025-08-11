@@ -1,26 +1,18 @@
 package com.example.servingwebcontent.Model;
 
 public class Giaodich {
-    public String magiaodich;
     public String makhachhang;
     public String maphong;
     public String ngaygiaodich;
     public String thoihan;
     public String tongtien;
     public Giaodich(){}
-    public Giaodich(String Idgd, String Idkh, String Idpt, String ngd, String th, String tt){
-        this.magiaodich = Idgd;
+    public Giaodich(String Idkh, String Idpt, String ngd, String th, String tt){
         this.makhachhang = Idkh;
         this.maphong = Idpt;
         this.ngaygiaodich = ngd;
         this.thoihan = th;
         this.tongtien = tt;
-    }
-    public String getMagiaodich(){
-        return this.magiaodich;
-    }
-    public void setMagiaodich(String Idgd){
-        this.magiaodich = Idgd;
     }
     public String getMakhachhang(){
         return this.makhachhang;

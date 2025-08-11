@@ -12,8 +12,9 @@
  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
   
-   
-</head>
+  
+
+  </head>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">DiepDuong</a>
@@ -28,17 +29,10 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Listkhachhang</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Phongtro
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Ha Dong</a></li>
-            <li><a class="dropdown-item" href="#">Thanh Xuan</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Listphongtro</a>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
@@ -51,46 +45,277 @@
   </div>
 </nav>
 <body>
-   
+  <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phòng trọ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f3fa;
+            padding: 20px;
+        }
 
-   
+        .container {
+            display: flex;
+            gap: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: auto;
+        }
 
+        .left {
+            flex: 1;
+        }
+
+        .left img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right h3 {
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .right p {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-size: 14px;
+        }
+
+        .btn-blue { background-color: #1976d2; }
+        .btn-green { background-color: #2e7d32; }
+        .btn-cyan { background-color: #00acc1; }
+    </style>
+</head>
+<body>
+   <style>
+    :root{
+      --bg: #e8f6ff;        /* nền xanh dương nhạt */
+      --header: #1e73c6;    /* header xanh đậm */
+      --card-bg: #ffffff;
+      --muted: #64748b;
+      --accent-blue: #2b6cb0;
+      --red: #e53935;
+      --green: #2e8b57;
+      --radius: 12px;
+      --gap: 22px;
+      --shadow: 0 6px 18px rgba(20,33,61,0.08);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: #102027;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Header */
+    header{
+      background: linear-gradient(180deg, var(--header), #1761a6);
+      color: #fff;
+      padding: 18px 28px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      box-shadow: 0 6px 20px rgba(16,32,64,0.08);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      font-size:20px;
+    }
+    .brand .logo{
+      width:42px;height:42px;border-radius:10px;
+      background: rgba(255,255,255,0.18);
+      display:inline-flex;align-items:center;justify-content:center;
+      font-weight:700;
+    }
+    nav a{
+      color:rgba(255,255,255,0.95);
+      text-decoration:none;margin-left:20px;font-weight:500;
+    }
+
+    /* Main container */
+    .container{
+      max-width:1150px;
+      margin:30px auto;
+      padding:0 22px 60px;
+    }
+
+    .top-row{
+      display:grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: var(--gap);
+      align-items:start;
+      margin-bottom: 20px;
+    }
+
+    .photo{
+      background:var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:8px;
+    }
+    .photo img{
+      display:block;
+      width:100%;
+      border-radius: calc(var(--radius) - 6px);
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .recent{
+      background:var(--card-bg);
+      border-radius: var(--radius);
+      padding:26px;
+      box-shadow: var(--shadow);
+    }
+    .recent h1{
+      margin:0 0 12px;font-size:30px;color:var(--accent-blue);
+      letter-spacing:0.2px;
+    }
+    .recent .badge{
+      display:inline-block;
+      background: rgba(43,108,176,0.12);
+      color: #153e6b;
+      padding:10px 16px;border-radius:10px;font-weight:600;
+      margin-bottom:14px;
+    }
+    .recent p{ margin:0; color:var(--muted); line-height:1.6; font-size:15px; }
+
+    /* Buttons row */
+    .actions{
+      margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;
+    }
+    .btn{
+      border:0; padding:10px 16px; border-radius:10px; cursor:pointer;
+      font-weight:600; color:#fff;
+      box-shadow: 0 6px 12px rgba(16,32,64,0.06);
+    }
+    .btn.search{ background:#2b6cb0; }
+    .btn.add{ background:#16a34a; }
+    .btn.invoice{ background:#0ea5a3; }
+
+    /* Info cards (2 cards side-by-side) */
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      margin-top:28px;
+    }
+    .card{
+      background:var(--card-bg);
+      border-radius: var(--radius);
+      padding:20px;
+      box-shadow: var(--shadow);
+    }
+    .card h2{ margin:0 0 14px; font-size:22px; }
+    .card .item{ display:flex; gap:12px; align-items:flex-start; margin-bottom:12px; color:#132326; }
+    .card .item i{ width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; color:var(--accent-blue); font-size:14px; }
+
+    .card .small{ color:var(--muted); font-size:14px; margin-top:6px; }
+
+    /* title colors */
+    .card.room h2{ color:var(--red); }
+    .card.contract h2{ color:var(--green); }
+
+    /* card buttons */
+    .card .card-actions{ margin-top:14px; display:flex; gap:10px; }
+    .card .btn-edit{ background:#2563eb; color:white; padding:10px 14px; border-radius:8px; border:0; cursor:pointer; }
+    .card .btn-del{ background:#ef4444; color:white; padding:10px 14px; border-radius:8px; border:0; cursor:pointer; }
+    .card .btn-inv{ background:#16a34a; color:white; padding:10px 14px; border-radius:8px; border:0; cursor:pointer; }
+
+    /* Responsive */
+    @media (max-width:980px){
+      .top-row{ grid-template-columns: 1fr; }
+      .cards{ grid-template-columns: 1fr; }
+      header{padding:14px;}
+      .container{ padding:0 16px 50px; }
+    }
+  </style>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="left">
+        <img src="https://ecogreen-saigon.vn/uploads/phong-tro-la-loai-hinh-nha-o-pho-bien-gia-re-tien-loi-cho-sinh-vien-va-nguoi-di-lam.png" alt="Ảnh phòng trọ">
     </div>
-    
+    <div class="right">
+        <h3>Phòng trọ Quận Hà Đông</h3>
+        <div class="btn-group">
+            <button class="btn btn-blue">Xem</button>
+            
+        </div>
+    </div>
+</div>
+
+<div class="cards">
+      <div class="card room">
+        <h2>Thông tin phòng trọ</h2>
+
+        <div class="item"><i class="fa-solid fa-hashtag" aria-hidden="true"></i><div><strong>Mã phòng:</strong> PT203</div></div>
+        <div class="item"><i class="fa-solid fa-hashtag" aria-hidden="true"></i><div><strong>Địa chỉ cụ thể:</strong> 111 Yên Nghĩa</div></div>
+        <div class="item"><i class="fa-solid fa-hashtag" aria-hidden="true"></i><div><strong>Nội thất:</strong> Giường, Tủ, Bàn, Điều Hòa</div></div>
+        <div class="item"><i class="fa-solid fa-ruler" aria-hidden="true"></i><div><strong>Diện tích:</strong> 25 m²</div></div>
+        <div class="item"><i class="fa-solid fa-circle-check" aria-hidden="true" style="color:green"></i><div><strong>Tình trạng:</strong> Đang cho thuê</div></div>
+        
+        <div class="card-actions">
+        
+         
+        </div>
+      </div>
+        <div class="card contract">
+          <h2>Thông tin giao dịch</h2>
+
+        <div class="item"><i class="fa fa-user" aria-hidden="true"></i><div><strong>Tên khách thuê:</strong><br>Nguyễn Văn A</div></div>
+        <div class="item"><i class="fa fa-calendar" aria-hidden="true"></i><div><strong>Thời hạn</strong><br>1 năm</div></div>
+        <div class="item"><i class="fa fa-calendar-check" aria-hidden="true"></i><div><strong> Ngày giao dịch:</strong><br>01/08/2025</div></div>
+        <div class="item"><i class="fa fa-calendar-check" aria-hidden="true"></i><div><strong>Tổng tiền:</strong><br>24.000.000 VND</div></div>
+          <div class="card-actions">
+          
+        </div>
 
 
-    <table class="table table-striped">
-        <thead >
-            <tr ><p style="font-size:xx-large; color:darkcyan ;text-align: center;">List of User</p></tr>
-            <tr>
-                <th><i class="bi bi-person-vcard"></i> phong tro ID </th>
-                <th><i class="bi bi-person-circle"></i> dia chi phong</th>
-                <th><i class="bi bi-person-circle"></i> dien tich</th>
-                <th><i class="bi bi-person-circle"></i> noi that</th>
-
-                
-              
-            </tr>
-        </thead>
-        <tbody>
-
-            <tr th:each="list: ${ListofPhongtro}">
-                <td data-sortable="true"><span th:text="${list.maphong}"> Ma </span></td>
-                <td><span th:text="${list.diachicuthe}"> Dia chi </span></td>
-                <td><span th:text="${list.dientich}"> Dientich </span></td>
-                <td><span th:text="${list.noithat}"> Noi that </span></td>
-              
-                              
-                <td><button type="button" class="btn btn-success bi bi-brush"> </button></td>
-                <td><button type="button" class="btn btn-danger bi bi-calendar2-x"> </button></td>
-                
+      </div>
+    </div>
+  </div>
 
 
-            </tr>
-        </tbody>
-    </table>
 
-
-     
 </body>
 </html>

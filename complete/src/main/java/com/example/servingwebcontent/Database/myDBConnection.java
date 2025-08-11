@@ -18,6 +18,7 @@ public class myDBConnection {
             String url = "jdbc:mysql://avnadmin:AVNS_DbvHWaBUrlYODvqhfWn@mysql-1acba087-ntduog11.b.aivencloud.com:17489/defaultdb?ssl-mode=REQUIRED:17489/defaultdb?ssl-mode=REQUIRED";
             String username = "avnadmin";
             String password = "";
+            c = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
              e.printStackTrace();
 

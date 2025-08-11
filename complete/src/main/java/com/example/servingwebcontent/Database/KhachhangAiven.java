@@ -1,5 +1,6 @@
 package com.example.servingwebcontent.Database;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -68,6 +69,73 @@ public class KhachhangAiven {
 
         return items;
 
+    }
+    public boolean createKhachhang(Khachhang kh) {
+        try {
+            myDBConnection my = new myDBConnection();
+            PreparedStatement ps = my.getMyConnPrepared(
+                "INSERT INTO quanLyNhaTro.khachhanglist (makhachhang, hovaten, tuoi, sodienthoai, diachi, gioitinh, cccd) VALUES (?, ?, ?, ?, ?, ?, ?)"
+            );
+            ps.setString(1, kh.getMakhachhang());
+            ps.setString(2, kh.getHovaten());
+            ps.setString(3, kh.getTuoi());
+            ps.setString(4, kh.getSodienthoai());
+            ps.setString(5, kh.getDiachi());
+            ps.setString(6, kh.getGioitinh());
+            ps.setString(7, kh.getCccd());
+
+            int rows = ps.executeUpdate();
+            ps.close();
+            return rows > 0;
+        } catch (Exception e) {
+            System.out.println("Error in CREATE Khachhang: " + e);
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // UPDATE - Cập nhật thông tin khách hàng
+    public boolean updateKhachhang(Khachhang kh) {
+        try {
+            myDBConnection my = new myDBConnection();
+            PreparedStatement ps = my.getMyConnPrepared(
+                "UPDATE quanLyNhaTro.khachhanglist SET hovaten=?, tuoi=?, sodienthoai=?, diachi=?, gioitinh=?, cccd=? WHERE makhachhang=?"
+            );
+            ps.setString(1, kh.getHovaten());
+            ps.setString(2, kh.getTuoi());
+            ps.setString(3, kh.getSodienthoai());
+            ps.setString(4, kh.getDiachi());
+            ps.setString(5, kh.getGioitinh());
+            ps.setString(6, kh.getCccd());
+            ps.setString(7, kh.getMakhachhang());
+
+            int rows = ps.executeUpdate();
+            ps.close();
+            return rows > 0;
+        } catch (Exception e) {
+            System.out.println("Error in UPDATE Khachhang: " + e);
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // DELETE - Xóa khách hàng
+    public boolean deleteKhachhang(String makhachhang) {
+        try {
+            myDBConnection my = new myDBConnection();
+            PreparedStatement ps = my.getMyConnPrepared(
+                "DELETE FROM quanLyNhaTro.khachhanglist WHERE makhachhang=?"
+            );
+            ps.setString(1, makhachhang);
+
+            int rows = ps.executeUpdate();
+            ps.close();
+            return rows > 0;
+        } catch (Exception e) {
+            System.out.println("Error in DELETE Khachhang: " + e);
+            e.printStackTrace();
+            return false;
+        }
     }
     
 }

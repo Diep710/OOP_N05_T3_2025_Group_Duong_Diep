@@ -6,14 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-import com.example.servingwebcontent.Model.Phongtro;
 @Controller
 public class GreetingController {
 	@GetMapping("/")
-	public String Phongtro(Model model) {
-		model.addAttribute("Phongtro", new Phongtro());
+	public String Giaodien(Model model) {
 
-		return "Phongtro";
+		return "Giaodien";
 	}
 
 	@GetMapping("/greeting")

@@ -22,7 +22,7 @@ public class QuanlyPhongtro {
 
 		model.addAttribute("listOfArray", listOfArray);
 
-		return "userlist";
+		return "phongtrolist";
 	}
 
 }

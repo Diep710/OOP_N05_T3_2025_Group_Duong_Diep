@@ -3,6 +3,7 @@ package com.example.servingwebcontent.Database;
 import org.springframework.stereotype.Controller;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.lang.Class;
 import java.sql.Statement;
 
@@ -39,6 +40,15 @@ public class myDBConnection {
 
         return null;
 
+    }
+    public PreparedStatement getMyConnPrepared(String sql) {
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ps;
     }
 
     public Connection getOnlyConn() {

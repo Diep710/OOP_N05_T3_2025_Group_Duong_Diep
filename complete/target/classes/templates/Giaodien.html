@@ -14,307 +14,421 @@
   
   
 
-  </head>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">DiepDuong</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Listkhachhang</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Listphongtro</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-<body>
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phòng trọ</title>
+    <title>Quản lý Phòng trọ</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e6f3fa;
-            padding: 20px;
-        }
-
-        .container {
-            display: flex;
-            gap: 20px;
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            max-width: 900px;
-            margin: auto;
-        }
-
-        .left {
-            flex: 1;
-        }
-
-        .left img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .right {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .right h3 {
-            color: #0066cc;
-            margin-bottom: 10px;
-        }
-
-        .right p {
-            font-size: 14px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            color: white;
-            font-size: 14px;
-        }
-
-        .btn-blue { background-color: #1976d2; }
-        .btn-green { background-color: #2e7d32; }
-        .btn-cyan { background-color: #00acc1; }
+        body { font-family: Arial, sans-serif; background-color: #f4f7f9; margin: 0; padding: 0; }
+        .header { background-color: #1a4d2e; color: white; padding: 1rem 2rem; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: white; font-weight: bold; font-size: 1.5rem; text-decoration: none; }
+        .nav-links { list-style: none; display: flex; gap: 20px; padding: 0; }
+        .nav-links a { color: white; text-decoration: none; padding: 5px 10px; border-radius: 5px; }
+        .nav-links a:hover { background-color: #3e7e5a; }
+        .search-bar { padding: 8px; border-radius: 5px; border: none; }
+        .main-content, .content-view { padding: 2rem; max-width: 1200px; margin: 0 auto; display: none; }
+        .active-view { display: block; }
+        .room-details-section { background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: flex; gap: 20px; overflow: hidden; margin-bottom: 2rem; }
+        .room-image-container { flex: 1; }
+        .room-image { width: 100%; height: auto; display: block; }
+        .room-info-container { flex: 1; padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+        .view-button { background-color: #3e7e5a; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+        .data-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .card { background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 1.5rem; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .data-table th, .data-table td { text-align: left; padding: 12px 15px; border-bottom: 1px solid #ddd; }
+        .data-table th { background-color: #f2f2f2; }
+        .action-buttons button { margin-right: 5px; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; color: white; }
+        .edit-btn { background-color: #2196F3; }
+        .delete-btn { background-color: #f44336; }
+        .modal { position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); display: none; align-items: center; justify-content: center; }
+        .modal-content { background-color: #fefefe; padding: 20px; border: 1px solid #888; width: 500px; border-radius: 10px; }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .form-row { margin-bottom: 15px; }
+        .form-row label, .form-row input, .form-row select, .form-row button { display: block; width: 100%; }
+        .form-row label { font-weight: bold; margin-bottom: 5px; }
+        .form-row input, .form-row select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .form-row button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
-   <style>
-    :root{
-      --bg: #e8f6ff;        /* nền xanh dương nhạt */
-      --header: #1e73c6;    /* header xanh đậm */
-      --card-bg: #ffffff;
-      --muted: #64748b;
-      --accent-blue: #2b6cb0;
-      --red: #e53935;
-      --green: #2e8b57;
-      --radius: 12px;
-      --gap: 22px;
-      --shadow: 0 6px 18px rgba(20,33,61,0.08);
-    }
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: var(--bg);
-      color: #102027;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">DiepDuong</a>
+            <ul class="nav-links">
+                <li><a href="#" data-view="home">Home</a></li>
+                <li><a href="#" data-view="khachhang">List khách hàng</a></li>
+                <li><a href="#" data-view="phongtro">List phòng trọ</a></li>
+                <li><a href="#" data-view="giaodich">List giao dịch</a></li>
+            </ul>
+            <input type="text" class="search-bar" id="searchKhachHang" placeholder="Tìm kiếm khách hàng...">
+        </nav>
+    </header>
 
-    /* Header */
-    header{
-      background: linear-gradient(180deg, var(--header), #1761a6);
-      color: #fff;
-      padding: 18px 28px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      box-shadow: 0 6px 20px rgba(16,32,64,0.08);
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:700;
-      font-size:20px;
-    }
-    .brand .logo{
-      width:42px;height:42px;border-radius:10px;
-      background: rgba(255,255,255,0.18);
-      display:inline-flex;align-items:center;justify-content:center;
-      font-weight:700;
-    }
-    nav a{
-      color:rgba(255,255,255,0.95);
-      text-decoration:none;margin-left:20px;font-weight:500;
-    }
-
-    /* Main container */
-    .container{
-      max-width:1150px;
-      margin:30px auto;
-      padding:0 22px 60px;
-    }
-
-    .top-row{
-      display:grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: var(--gap);
-      align-items:start;
-      margin-bottom: 20px;
-    }
-
-    .photo{
-      background:var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:8px;
-    }
-    .photo img{
-      display:block;
-      width:100%;
-      border-radius: calc(var(--radius) - 6px);
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .recent{
-      background:var(--card-bg);
-      border-radius: var(--radius);
-      padding:26px;
-      box-shadow: var(--shadow);
-    }
-    .recent h1{
-      margin:0 0 12px;font-size:30px;color:var(--accent-blue);
-      letter-spacing:0.2px;
-    }
-    .recent .badge{
-      display:inline-block;
-      background: rgba(43,108,176,0.12);
-      color: #153e6b;
-      padding:10px 16px;border-radius:10px;font-weight:600;
-      margin-bottom:14px;
-    }
-    .recent p{ margin:0; color:var(--muted); line-height:1.6; font-size:15px; }
-
-    /* Buttons row */
-    .actions{
-      margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;
-    }
-    .btn{
-      border:0; padding:10px 16px; border-radius:10px; cursor:pointer;
-      font-weight:600; color:#fff;
-      box-shadow: 0 6px 12px rgba(16,32,64,0.06);
-    }
-    .btn.search{ background:#2b6cb0; }
-    .btn.add{ background:#16a34a; }
-    .btn.invoice{ background:#0ea5a3; }
-
-    /* Info cards (2 cards side-by-side) */
-    .cards{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--gap);
-      margin-top:28px;
-    }
-    .card{
-      background:var(--card-bg);
-      border-radius: var(--radius);
-      padding:20px;
-      box-shadow: var(--shadow);
-    }
-    .card h2{ margin:0 0 14px; font-size:22px; }
-    .card .item{ display:flex; gap:12px; align-items:flex-start; margin-bottom:12px; color:#132326; }
-    .card .item i{ width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; color:var(--accent-blue); font-size:14px; }
-
-    .card .small{ color:var(--muted); font-size:14px; margin-top:6px; }
-
-    /* title colors */
-    .card.room h2{ color:var(--red); }
-    .card.contract h2{ color:var(--green); }
-
-    /* card buttons */
-    .card .card-actions{ margin-top:14px; display:flex; gap:10px; }
-    .card .btn-edit{ background:#2563eb; color:white; padding:10px 14px; border-radius:8px; border:0; cursor:pointer; }
-    .card .btn-del{ background:#ef4444; color:white; padding:10px 14px; border-radius:8px; border:0; cursor:pointer; }
-    .card .btn-inv{ background:#16a34a; color:white; padding:10px 14px; border-radius:8px; border:0; cursor:pointer; }
-
-    /* Responsive */
-    @media (max-width:980px){
-      .top-row{ grid-template-columns: 1fr; }
-      .cards{ grid-template-columns: 1fr; }
-      header{padding:14px;}
-      .container{ padding:0 16px 50px; }
-    }
-  </style>
-</head>
-<body>
-
-
-<div class="container">
-    <div class="left">
-        <img src="https://ecogreen-saigon.vn/uploads/phong-tro-la-loai-hinh-nha-o-pho-bien-gia-re-tien-loi-cho-sinh-vien-va-nguoi-di-lam.png" alt="Ảnh phòng trọ">
+    <main id="home" class="main-content active-view">
+        <section class="room-details-section">
+            <div class="room-image-container">
+                <img src="https://via.placeholder.com/600x400?text=Phòng+trọ+đẹp" alt="Phòng trọ Quận Hà Đông" class="room-image">
+            </div>
+            <div class="room-info-container">
+                <h2>Phòng trọ Quận Hà Đông</h2>
+                <button class="view-button">Xem</button>
+            </div>
+        </section>
+        <section class="data-section">
+            <div class="card room-info-card">
+                <h3>Thông tin phòng trọ</h3>
+                <p><strong>Mã phòng:</strong> PT203</p>
+                <p><strong>Địa chỉ cư trú:</strong> 111 Yên Nghĩa</p>
+                <p><strong>Nội thất:</strong> Giường, Tủ, Bàn, Điều hòa</p>
+                <p><strong>Diện tích:</strong> 25 m²</p>
+                <p><strong>Tình trạng:</strong> Đang cho thuê</p>
+            </div>
+            <div class="card transaction-info-card">
+                <h3>Thông tin giao dịch</h3>
+                <p><strong>Tên khách thuê:</strong> Nguyễn Văn A</p>
+                <p><strong>Thời hạn:</strong> 1 năm</p>
+                <p><strong>Ngày giao dịch:</strong> 01/08/2025</p>
+                <p><strong>Tổng tiền:</strong> 24.000.000 VND</p>
+            </div>
+        </section>
+    </main>
+    
+    <div id="khachhang" class="content-view">
+        <h2>Danh sách Khách hàng</h2>
+        <button id="addKhachHangBtn">Thêm khách hàng</button>
+        <table class="data-table">
+            <thead><tr><th>ID</th><th>Tên khách hàng</th><th>Số điện thoại</th><th>Email</th><th>Thao tác</th></tr></thead>
+            <tbody id="khachHangTableBody"></tbody>
+        </table>
     </div>
-    <div class="right">
-        <h3>Phòng trọ Quận Hà Đông</h3>
-        <div class="btn-group">
-            <button class="btn btn-blue">Xem</button>
+
+    <div id="phongtro" class="content-view">
+        <h2>Danh sách Phòng trọ</h2>
+        <button id="addPhongTroBtn">Thêm phòng trọ</button>
+        <table class="data-table">
+            <thead><tr><th>ID</th><th>Tên phòng</th><th>Địa chỉ</th><th>Giá thuê</th><th>Tình trạng</th><th>Thao tác</th></tr></thead>
+            <tbody id="phongTroTableBody"></tbody>
+        </table>
+    </div>
+    
+    <div id="giaodich" class="content-view">
+        <h2>Danh sách Giao dịch</h2>
+        <button id="addGiaoDichBtn">Thêm giao dịch</button>
+        <table class="data-table">
+            <thead><tr><th>ID</th><th>Mã phòng</th><th>Tên khách hàng</th><th>Ngày giao dịch</th><th>Tổng tiền</th><th>Thao tác</th></tr></thead>
+            <tbody id="giaoDichTableBody"></tbody>
+        </table>
+    </div>
+
+    <div id="khachHangFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" data-modal="khachHangFormModal">&times;</span>
+            <h3 id="khachHangFormTitle">Thêm Khách hàng</h3>
+            <form id="khachHangForm">
+                <input type="hidden" id="khachHangId">
+                <div class="form-row"><label for="tenKhachHang">Tên khách hàng:</label><input type="text" id="tenKhachHang" required></div>
+                <div class="form-row"><label for="sdtKhachHang">Số điện thoại:</label><input type="text" id="sdtKhachHang" required></div>
+                <div class="form-row"><label for="emailKhachHang">Email:</label><input type="email" id="emailKhachHang" required></div>
+                <button type="submit">Lưu</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="phongTroFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" data-modal="phongTroFormModal">&times;</span>
+            <h3 id="phongTroFormTitle">Thêm Phòng trọ</h3>
+            <form id="phongTroForm">
+                <input type="hidden" id="phongTroId">
+                <div class="form-row"><label for="tenPhong">Tên phòng:</label><input type="text" id="tenPhong" required></div>
+                <div class="form-row"><label for="diaChi">Địa chỉ:</label><input type="text" id="diaChi" required></div>
+                <div class="form-row"><label for="giaThue">Giá thuê:</label><input type="number" id="giaThue" required></div>
+                <div class="form-row">
+                    <label for="tinhTrang">Tình trạng:</label>
+                    <select id="tinhTrang">
+                        <option value="Đang cho thuê">Đang cho thuê</option>
+                        <option value="Còn trống">Còn trống</option>
+                    </select>
+                </div>
+                <button type="submit">Lưu</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="giaoDichFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" data-modal="giaoDichFormModal">&times;</span>
+            <h3 id="giaoDichFormTitle">Thêm Giao dịch</h3>
+            <form id="giaoDichForm">
+                <input type="hidden" id="giaoDichId">
+                <div class="form-row"><label for="maPhongGiaoDich">Mã phòng:</label><input type="text" id="maPhongGiaoDich" required></div>
+                <div class="form-row"><label for="tenKhachGiaoDich">Tên khách hàng:</label><input type="text" id="tenKhachGiaoDich" required></div>
+                <div class="form-row"><label for="ngayGiaoDich">Ngày giao dịch:</label><input type="date" id="ngayGiaoDich" required></div>
+                <div class="form-row"><label for="tongTienGiaoDich">Tổng tiền:</label><input type="number" id="tongTienGiaoDich" required></div>
+                <button type="submit">Lưu</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const views = document.querySelectorAll('.main-content, .content-view');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const khachHangTableBody = document.getElementById('khachHangTableBody');
+            const phongTroTableBody = document.getElementById('phongTroTableBody');
+            const giaoDichTableBody = document.getElementById('giaoDichTableBody');
             
-        </div>
-    </div>
-</div>
+            const khachHangFormModal = document.getElementById('khachHangFormModal');
+            const phongTroFormModal = document.getElementById('phongTroFormModal');
+            const giaoDichFormModal = document.getElementById('giaoDichFormModal');
+            const searchInput = document.getElementById('searchKhachHang');
 
-<div class="cards">
-      <div class="card room">
-        <h2>Thông tin phòng trọ</h2>
+            let khachHangs = [
+                { id: 1, ten: 'Nguyễn Văn A', sdt: '0987654321', email: 'a.nguyen@example.com' },
+                { id: 2, ten: 'Trần Thị B', sdt: '0912345678', email: 'b.tran@example.com' },
+                { id: 3, ten: 'Lê Văn C', sdt: '0901234567', email: 'c.le@example.com' }
+            ];
 
-        <div class="item"><i class="fa-solid fa-hashtag" aria-hidden="true"></i><div><strong>Mã phòng:</strong> PT203</div></div>
-        <div class="item"><i class="fa-solid fa-hashtag" aria-hidden="true"></i><div><strong>Địa chỉ cụ thể:</strong> 111 Yên Nghĩa</div></div>
-        <div class="item"><i class="fa-solid fa-hashtag" aria-hidden="true"></i><div><strong>Nội thất:</strong> Giường, Tủ, Bàn, Điều Hòa</div></div>
-        <div class="item"><i class="fa-solid fa-ruler" aria-hidden="true"></i><div><strong>Diện tích:</strong> 25 m²</div></div>
-        <div class="item"><i class="fa-solid fa-circle-check" aria-hidden="true" style="color:green"></i><div><strong>Tình trạng:</strong> Đang cho thuê</div></div>
-        
-        <div class="card-actions">
-        
-         
-        </div>
-      </div>
-        <div class="card contract">
-          <h2>Thông tin giao dịch</h2>
+            let phongTros = [
+                { id: 1, ten: 'Phòng 101', diaChi: '123 Đường ABC', giaThue: 2500000, tinhTrang: 'Đang cho thuê' },
+                { id: 2, ten: 'Phòng 202', diaChi: '123 Đường ABC', giaThue: 3000000, tinhTrang: 'Còn trống' }
+            ];
+            
+            let giaoDichs = [
+                { id: 1, maPhong: 'PT001', tenKhach: 'Nguyễn Văn A', ngayGiaoDich: '2023-01-15', tongTien: 5000000 },
+                { id: 2, maPhong: 'PT002', tenKhach: 'Trần Thị B', ngayGiaoDich: '2023-02-20', tongTien: 6000000 }
+            ];
 
-        <div class="item"><i class="fa fa-user" aria-hidden="true"></i><div><strong>Tên khách thuê:</strong><br>Nguyễn Văn A</div></div>
-        <div class="item"><i class="fa fa-calendar" aria-hidden="true"></i><div><strong>Thời hạn</strong><br>1 năm</div></div>
-        <div class="item"><i class="fa fa-calendar-check" aria-hidden="true"></i><div><strong> Ngày giao dịch:</strong><br>01/08/2025</div></div>
-        <div class="item"><i class="fa fa-calendar-check" aria-hidden="true"></i><div><strong>Tổng tiền:</strong><br>24.000.000 VND</div></div>
-          <div class="card-actions">
-          
-        </div>
+            const renderView = (viewId) => {
+                views.forEach(view => {
+                    view.classList.remove('active-view');
+                    if (view.id === viewId) {
+                        view.classList.add('active-view');
+                    }
+                });
+            };
 
+            const renderKhachHangs = (filteredKhachHangs = khachHangs) => {
+                khachHangTableBody.innerHTML = '';
+                filteredKhachHangs.forEach(khach => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${khach.id}</td><td>${khach.ten}</td><td>${khach.sdt}</td><td>${khach.email}</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn" data-id="${khach.id}" data-type="khachhang">Sửa</button>
+                            <button class="delete-btn" data-id="${khach.id}" data-type="khachhang">Xóa</button>
+                        </td>
+                    `;
+                    khachHangTableBody.appendChild(row);
+                });
+            };
 
-      </div>
-    </div>
-  </div>
+            const renderPhongTros = () => {
+                phongTroTableBody.innerHTML = '';
+                phongTros.forEach(phong => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${phong.id}</td><td>${phong.ten}</td><td>${phong.diaChi}</td><td>${phong.giaThue.toLocaleString()}</td><td>${phong.tinhTrang}</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn" data-id="${phong.id}" data-type="phongtro">Sửa</button>
+                            <button class="delete-btn" data-id="${phong.id}" data-type="phongtro">Xóa</button>
+                        </td>
+                    `;
+                    phongTroTableBody.appendChild(row);
+                });
+            };
+            
+            const renderGiaoDichs = () => {
+                giaoDichTableBody.innerHTML = '';
+                giaoDichs.forEach(giaoDich => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${giaoDich.id}</td><td>${giaoDich.maPhong}</td><td>${giaoDich.tenKhach}</td><td>${giaoDich.ngayGiaoDich}</td><td>${giaoDich.tongTien.toLocaleString()}</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn" data-id="${giaoDich.id}" data-type="giaodich">Sửa</button>
+                            <button class="delete-btn" data-id="${giaoDich.id}" data-type="giaodich">Xóa</button>
+                        </td>
+                    `;
+                    giaoDichTableBody.appendChild(row);
+                });
+            };
 
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const viewId = e.target.dataset.view;
+                    if (viewId) {
+                        renderView(viewId);
+                        if (viewId === 'khachhang') renderKhachHangs();
+                        if (viewId === 'phongtro') renderPhongTros();
+                        if (viewId === 'giaodich') renderGiaoDichs();
+                    }
+                });
+            });
+
+            // Thanh tìm kiếm khách hàng
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredKhachHangs = khachHangs.filter(khach =>
+                    khach.ten.toLowerCase().includes(searchTerm) ||
+                    khach.sdt.toLowerCase().includes(searchTerm) ||
+                    khach.email.toLowerCase().includes(searchTerm)
+                );
+                renderKhachHangs(filteredKhachHangs);
+            });
+
+            // Các nút "Thêm"
+            document.getElementById('addKhachHangBtn').addEventListener('click', () => {
+                document.getElementById('khachHangFormTitle').textContent = 'Thêm Khách hàng';
+                document.getElementById('khachHangId').value = '';
+                document.getElementById('khachHangForm').reset();
+                khachHangFormModal.style.display = 'flex';
+            });
+            document.getElementById('addPhongTroBtn').addEventListener('click', () => {
+                document.getElementById('phongTroFormTitle').textContent = 'Thêm Phòng trọ';
+                document.getElementById('phongTroId').value = '';
+                document.getElementById('phongTroForm').reset();
+                phongTroFormModal.style.display = 'flex';
+            });
+            document.getElementById('addGiaoDichBtn').addEventListener('click', () => {
+                document.getElementById('giaoDichFormTitle').textContent = 'Thêm Giao dịch';
+                document.getElementById('giaoDichId').value = '';
+                document.getElementById('giaoDichForm').reset();
+                giaoDichFormModal.style.display = 'flex';
+            });
+
+            // Các nút "Đóng modal"
+            document.querySelectorAll('.close-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.getElementById(e.target.dataset.modal).style.display = 'none';
+                });
+            });
+
+            // Xử lý Form Khách Hàng
+            document.getElementById('khachHangForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('khachHangId').value;
+                const ten = document.getElementById('tenKhachHang').value;
+                const sdt = document.getElementById('sdtKhachHang').value;
+                const email = document.getElementById('emailKhachHang').value;
+
+                if (id) {
+                    const index = khachHangs.findIndex(khach => khach.id == id);
+                    if (index > -1) khachHangs[index] = { id: parseInt(id), ten, sdt, email };
+                } else {
+                    const newId = khachHangs.length ? Math.max(...khachHangs.map(khach => khach.id)) + 1 : 1;
+                    khachHangs.push({ id: newId, ten, sdt, email });
+                }
+                khachHangFormModal.style.display = 'none';
+                renderKhachHangs();
+            });
+
+            // Xử lý Form Phòng Trọ
+            document.getElementById('phongTroForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('phongTroId').value;
+                const ten = document.getElementById('tenPhong').value;
+                const diaChi = document.getElementById('diaChi').value;
+                const giaThue = parseInt(document.getElementById('giaThue').value);
+                const tinhTrang = document.getElementById('tinhTrang').value;
+
+                if (id) {
+                    const index = phongTros.findIndex(phong => phong.id == id);
+                    if (index > -1) phongTros[index] = { id: parseInt(id), ten, diaChi, giaThue, tinhTrang };
+                } else {
+                    const newId = phongTros.length ? Math.max(...phongTros.map(phong => phong.id)) + 1 : 1;
+                    phongTros.push({ id: newId, ten, diaChi, giaThue, tinhTrang });
+                }
+                phongTroFormModal.style.display = 'none';
+                renderPhongTros();
+            });
+            
+            // Xử lý Form Giao Dịch
+            document.getElementById('giaoDichForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('giaoDichId').value;
+                const maPhong = document.getElementById('maPhongGiaoDich').value;
+                const tenKhach = document.getElementById('tenKhachGiaoDich').value;
+                const ngayGiaoDich = document.getElementById('ngayGiaoDich').value;
+                const tongTien = parseInt(document.getElementById('tongTienGiaoDich').value);
+
+                if (id) {
+                    const index = giaoDichs.findIndex(gd => gd.id == id);
+                    if (index > -1) giaoDichs[index] = { id: parseInt(id), maPhong, tenKhach, ngayGiaoDich, tongTien };
+                } else {
+                    const newId = giaoDichs.length ? Math.max(...giaoDichs.map(gd => gd.id)) + 1 : 1;
+                    giaoDichs.push({ id: newId, maPhong, tenKhach, ngayGiaoDich, tongTien });
+                }
+                giaoDichFormModal.style.display = 'none';
+                renderGiaoDichs();
+            });
+
+            // Gắn sự kiện cho các nút Sửa/Xóa sau khi render
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('edit-btn')) {
+                    const id = e.target.dataset.id;
+                    const type = e.target.dataset.type;
+                    if (type === 'khachhang') {
+                        const khach = khachHangs.find(k => k.id == id);
+                        if (khach) {
+                            document.getElementById('khachHangFormTitle').textContent = 'Sửa Khách hàng';
+                            document.getElementById('khachHangId').value = khach.id;
+                            document.getElementById('tenKhachHang').value = khach.ten;
+                            document.getElementById('sdtKhachHang').value = khach.sdt;
+                            document.getElementById('emailKhachHang').value = khach.email;
+                            khachHangFormModal.style.display = 'flex';
+                        }
+                    } else if (type === 'phongtro') {
+                        const phong = phongTros.find(p => p.id == id);
+                        if (phong) {
+                            document.getElementById('phongTroFormTitle').textContent = 'Sửa Phòng trọ';
+                            document.getElementById('phongTroId').value = phong.id;
+                            document.getElementById('tenPhong').value = phong.ten;
+                            document.getElementById('diaChi').value = phong.diaChi;
+                            document.getElementById('giaThue').value = phong.giaThue;
+                            document.getElementById('tinhTrang').value = phong.tinhTrang;
+                            phongTroFormModal.style.display = 'flex';
+                        }
+                    } else if (type === 'giaodich') {
+                        const giaoDich = giaoDichs.find(gd => gd.id == id);
+                        if (giaoDich) {
+                            document.getElementById('giaoDichFormTitle').textContent = 'Sửa Giao dịch';
+                            document.getElementById('giaoDichId').value = giaoDich.id;
+                            document.getElementById('maPhongGiaoDich').value = giaoDich.maPhong;
+                            document.getElementById('tenKhachGiaoDich').value = giaoDich.tenKhach;
+                            document.getElementById('ngayGiaoDich').value = giaoDich.ngayGiaoDich;
+                            document.getElementById('tongTienGiaoDich').value = giaoDich.tongTien;
+                            giaoDichFormModal.style.display = 'flex';
+                        }
+                    }
+                } else if (e.target.classList.contains('delete-btn')) {
+                    const id = e.target.dataset.id;
+                    const type = e.target.dataset.type;
+                    if (confirm('Bạn có chắc chắn muốn xóa mục này?')) {
+                        if (type === 'khachhang') {
+                            khachHangs = khachHangs.filter(khach => khach.id != id);
+                            renderKhachHangs();
+                        } else if (type === 'phongtro') {
+                            phongTros = phongTros.filter(phong => phong.id != id);
+                            renderPhongTros();
+                        } else if (type === 'giaodich') {
+                            giaoDichs = giaoDichs.filter(gd => gd.id != id);
+                            renderGiaoDichs();
+                        }
+                    }
+                }
+            });
+
+            renderView('home');
+        });
+    </script>
+</body>
+</html>
 
 
 </body>

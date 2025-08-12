@@ -159,6 +159,44 @@
             </form>
         </div>
     </div>
+    
+    <div id="addRoomFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" data-modal="addRoomFormModal">&times;</span>
+            <h3>Thêm phòng trọ mới</h3>
+            <form id="addRoomForm">
+                <div class="form-row"><label for="newMaPhong">Mã phòng:</label><input type="text" id="newMaPhong" required></div>
+                <div class="form-row"><label for="newDienTich">Diện tích (m²):</label><input type="number" id="newDienTich" required></div>
+                <div class="form-row"><label for="newDiaChi">Địa chỉ cụ thể:</label><input type="text" id="newDiaChi" required></div>
+                <div class="form-row"><label for="newNoiThat">Nội thất:</label><input type="text" id="newNoiThat"></div>
+                <div class="form-row"><label for="newGiaThue">Giá thuê:</label><input type="number" id="newGiaThue" required></div>
+                <div class="form-row">
+                    <label for="newTinhTrang">Tình trạng:</label>
+                    <select id="newTinhTrang" required>
+                        <option value="Còn trống">Còn trống</option>
+                        <option value="Đang cho thuê">Đang cho thuê</option>
+                    </select>
+                </div>
+                <button type="submit">Thêm phòng</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="addKhachHangFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" data-modal="addKhachHangFormModal">&times;</span>
+            <h3>Thêm khách hàng mới</h3>
+            <form id="addKhachHangForm">
+                <div class="form-row"><label for="newTenKH">Tên khách hàng:</label><input type="text" id="newTenKH" required></div>
+                <div class="form-row"><label for="newTuoiKH">Tuổi:</label><input type="number" id="newTuoiKH"></div>
+                <div class="form-row"><label for="newSdtKH">Số điện thoại:</label><input type="text" id="newSdtKH" required></div>
+                <div class="form-row"><label for="newDiaChiKH">Địa chỉ:</label><input type="text" id="newDiaChiKH"></div>
+                <div class="form-row"><label for="newGioiTinhKH">Giới tính:</label><input type="text" id="newGioiTinhKH"></div>
+                <div class="form-row"><label for="newCccdKH">CCCD:</label><input type="text" id="newCccdKH" required></div>
+                <button type="submit">Thêm khách hàng</button>
+            </form>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -170,12 +208,13 @@
             
             const bookNowBtn = document.getElementById('bookNowBtn');
             const bookRoomFormModal = document.getElementById('bookRoomFormModal');
+            const addRoomFormModal = document.getElementById('addRoomFormModal');
+            const addKhachHangFormModal = document.getElementById('addKhachHangFormModal');
             const searchInput = document.getElementById('searchKhachHang');
 
             const roomDetailsSection = document.querySelector('.room-details-section');
             const dataSection = document.querySelector('.data-section');
-            const closeBtn = document.querySelector('.close-btn[data-modal="bookRoomFormModal"]');
-
+            
             let khachHangs = [
                 { id: 1, ten: 'Nguyễn Văn A', tuoi: 25, sdt: '0987654321', diaChi: '111 Yên Nghĩa', gioiTinh: 'Nam', cccd: '001234567890' },
                 { id: 2, ten: 'Trần Thị B', tuoi: 22, sdt: '0912345678', diaChi: '222 Hà Đông', gioiTinh: 'Nữ', cccd: '001987654321' },
@@ -191,8 +230,6 @@
                 { id: 1, maKhachHang: 'KH001', maPhong: 'PT001', ngayGiaoDich: '2023-01-15', thoiHan: '12 tháng', tongTien: 5000000 },
                 { id: 2, maKhachHang: 'KH002', maPhong: 'PT002', ngayGiaoDich: '2023-02-20', thoiHan: '6 tháng', tongTien: 6000000 }
             ];
-            
-            let bookingRequests = [];
 
             const renderView = (viewId) => {
                 views.forEach(view => {
@@ -222,9 +259,11 @@
                 phongTroTableBody.innerHTML = '';
                 phongTros.forEach(phong => {
                     const row = document.createElement('tr');
-                    const bookBtnHtml = '';
+                    const bookBtnHtml = (phong.tinhTrang === 'Còn trống') 
+                        ? `<button class="book-btn" data-ma-phong="${phong.maPhong}">Đặt phòng</button>` 
+                        : '';
                     row.innerHTML = `
-                        <td>${phong.id}</td><td>${phong.maPhong}</td><td>${phong.dienTich} m²</td><td>${phong.diaChiCuThe}</td><td>${phong.noiThat}</td><td>${phong.giaThue.toLocaleString()}</td><td>${phong.tinhTrang}</td>
+                        <td>${phong.id}</td><td>${phong.maPhong}</td><td>${phong.dienTich} m²</td><td>${phong.diaChiCuThe}</td><td>${phong.noiThat}</td><td>${phong.giaThue.toLocaleString()} VND</td><td>${phong.tinhTrang}</td>
                         <td class="action-buttons">
                             <button class="edit-btn" data-id="${phong.id}" data-type="phongtro">Sửa</button>
                             <button class="delete-btn" data-id="${phong.id}" data-type="phongtro">Xóa</button>
@@ -240,7 +279,7 @@
                 giaoDichs.forEach(giaoDich => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${giaoDich.id}</td><td>${giaoDich.maKhachHang}</td><td>${giaoDich.maPhong}</td><td>${giaoDich.ngayGiaoDich}</td><td>${giaoDich.thoiHan}</td><td>${giaoDich.tongTien.toLocaleString()}</td>
+                        <td>${giaoDich.id}</td><td>${giaoDich.maKhachHang}</td><td>${giaoDich.maPhong}</td><td>${giaoDich.ngayGiaoDich}</td><td>${giaoDich.thoiHan}</td><td>${giaoDich.tongTien.toLocaleString()} VND</td>
                         <td class="action-buttons">
                             <button class="edit-btn" data-id="${giaoDich.id}" data-type="giaodich">Sửa</button>
                             <button class="delete-btn" data-id="${giaoDich.id}" data-type="giaodich">Xóa</button>
@@ -278,7 +317,7 @@
 
             // Nút "Đặt phòng" trên trang chủ
             bookNowBtn.addEventListener('click', () => {
-                const maPhongMacDinh = 'PT203';
+                const maPhongMacDinh = 'PT002'; // Ví dụ, đặt phòng có mã PT002
                 const phongMacDinh = phongTros.find(phong => phong.maPhong === maPhongMacDinh);
                 
                 if (phongMacDinh && phongMacDinh.tinhTrang === 'Còn trống') {
@@ -291,41 +330,104 @@
                 }
             });
 
+            // Nút "Đặt phòng" trong danh sách phòng trọ
+            phongTroTableBody.addEventListener('click', (e) => {
+                if (e.target.classList.contains('book-btn')) {
+                    const maPhong = e.target.dataset.maPhong;
+                    document.getElementById('bookingMaPhong').value = maPhong;
+                    bookRoomFormModal.style.display = 'flex';
+                }
+            });
+
             // Xử lý Form đặt phòng từ modal
             document.getElementById('bookRoomForm').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const maKhach = document.getElementById('bookingMaKhach').value;
                 const maPhong = document.getElementById('bookingMaPhong').value;
                 const ngayBatDau = document.getElementById('bookingStartDate').value;
-                const thoiHan = document.getElementById('bookingDuration').value;
+                const thoiHan = parseInt(document.getElementById('bookingDuration').value);
 
                 const phong = phongTros.find(p => p.maPhong === maPhong);
                 const tongTien = phong ? phong.giaThue * thoiHan : 0;
+                
+                // Cập nhật tình trạng phòng
+                if (phong) {
+                    phong.tinhTrang = 'Đang cho thuê';
+                }
 
-                const newBooking = {
-                    maKhach,
-                    maPhong,
-                    ngayBatDau,
+                // Thêm giao dịch mới
+                const newGiaoDich = {
+                    id: giaoDichs.length > 0 ? Math.max(...giaoDichs.map(gd => gd.id)) + 1 : 1,
+                    maKhachHang: maKhach,
+                    maPhong: maPhong,
+                    ngayGiaoDich: ngayBatDau,
                     thoiHan: `${thoiHan} tháng`,
-                    tongTien
+                    tongTien: tongTien
                 };
+                giaoDichs.push(newGiaoDich);
                 
-                bookingRequests.push(newBooking);
-                
-                console.log('Yêu cầu đặt phòng mới:', newBooking);
+                console.log('Yêu cầu đặt phòng mới:', newGiaoDich);
                 alert(`Yêu cầu đặt phòng mã ${maPhong} của khách hàng ${maKhach} đã được gửi thành công!`);
 
                 bookRoomFormModal.style.display = 'none';
-                roomDetailsSection.style.display = 'flex';
-                dataSection.style.display = 'grid';
                 document.getElementById('bookRoomForm').reset();
+                renderPhongTros(); // Cập nhật lại danh sách phòng
             });
 
-            // Các nút "Đóng modal"
-            closeBtn.addEventListener('click', () => {
-                bookRoomFormModal.style.display = 'none';
-                roomDetailsSection.style.display = 'flex';
-                dataSection.style.display = 'grid';
+            // Mở modal thêm phòng
+            document.getElementById('addPhongTroBtn').addEventListener('click', () => {
+                addRoomFormModal.style.display = 'flex';
+            });
+            
+            // Xử lý form thêm phòng mới
+            document.getElementById('addRoomForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newPhong = {
+                    id: phongTros.length > 0 ? Math.max(...phongTros.map(p => p.id)) + 1 : 1,
+                    maPhong: document.getElementById('newMaPhong').value,
+                    dienTich: parseInt(document.getElementById('newDienTich').value),
+                    diaChiCuThe: document.getElementById('newDiaChi').value,
+                    noiThat: document.getElementById('newNoiThat').value,
+                    giaThue: parseInt(document.getElementById('newGiaThue').value),
+                    tinhTrang: document.getElementById('newTinhTrang').value,
+                };
+                phongTros.push(newPhong);
+                addRoomFormModal.style.display = 'none';
+                document.getElementById('addRoomForm').reset();
+                renderPhongTros();
+                alert('Thêm phòng trọ mới thành công!');
+            });
+            
+            // Mở modal thêm khách hàng
+            document.getElementById('addKhachHangBtn').addEventListener('click', () => {
+                addKhachHangFormModal.style.display = 'flex';
+            });
+
+            // Xử lý form thêm khách hàng mới
+            document.getElementById('addKhachHangForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newKhachHang = {
+                    id: khachHangs.length > 0 ? Math.max(...khachHangs.map(kh => kh.id)) + 1 : 1,
+                    ten: document.getElementById('newTenKH').value,
+                    tuoi: parseInt(document.getElementById('newTuoiKH').value),
+                    sdt: document.getElementById('newSdtKH').value,
+                    diaChi: document.getElementById('newDiaChiKH').value,
+                    gioiTinh: document.getElementById('newGioiTinhKH').value,
+                    cccd: document.getElementById('newCccdKH').value,
+                };
+                khachHangs.push(newKhachHang);
+                addKhachHangFormModal.style.display = 'none';
+                document.getElementById('addKhachHangForm').reset();
+                renderKhachHangs();
+                alert('Thêm khách hàng mới thành công!');
+            });
+
+            // Đóng các modal
+            document.querySelectorAll('.close-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const modalId = e.target.dataset.modal;
+                    document.getElementById(modalId).style.display = 'none';
+                });
             });
 
             renderView('home');

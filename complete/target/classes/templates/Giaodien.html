@@ -13,7 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
   
   
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -102,7 +101,18 @@
         <h2>Danh sách Khách hàng</h2>
         <button id="addKhachHangBtn">Thêm khách hàng</button>
         <table class="data-table">
-            <thead><tr><th>ID</th><th>Tên khách hàng</th><th>Số điện thoại</th><th>Email</th><th>Thao tác</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên</th>
+                    <th>Tuổi</th>
+                    <th>SĐT</th>
+                    <th>Địa chỉ</th>
+                    <th>Giới tính</th>
+                    <th>CCCD</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
             <tbody id="khachHangTableBody"></tbody>
         </table>
     </div>
@@ -111,7 +121,18 @@
         <h2>Danh sách Phòng trọ</h2>
         <button id="addPhongTroBtn">Thêm phòng trọ</button>
         <table class="data-table">
-            <thead><tr><th>ID</th><th>Tên phòng</th><th>Địa chỉ</th><th>Giá thuê</th><th>Tình trạng</th><th>Thao tác</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Mã phòng</th>
+                    <th>Diện tích</th>
+                    <th>Địa chỉ cụ thể</th>
+                    <th>Nội thất</th>
+                    <th>Giá thuê</th>
+                    <th>Tình trạng</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
             <tbody id="phongTroTableBody"></tbody>
         </table>
     </div>
@@ -132,8 +153,11 @@
             <form id="khachHangForm">
                 <input type="hidden" id="khachHangId">
                 <div class="form-row"><label for="tenKhachHang">Tên khách hàng:</label><input type="text" id="tenKhachHang" required></div>
+                <div class="form-row"><label for="tuoiKhachHang">Tuổi:</label><input type="number" id="tuoiKhachHang" required></div>
                 <div class="form-row"><label for="sdtKhachHang">Số điện thoại:</label><input type="text" id="sdtKhachHang" required></div>
-                <div class="form-row"><label for="emailKhachHang">Email:</label><input type="email" id="emailKhachHang" required></div>
+                <div class="form-row"><label for="diaChiKhachHang">Địa chỉ:</label><input type="text" id="diaChiKhachHang" required></div>
+                <div class="form-row"><label for="gioiTinhKhachHang">Giới tính:</label><input type="text" id="gioiTinhKhachHang" required></div>
+                <div class="form-row"><label for="cccdKhachHang">CCCD:</label><input type="text" id="cccdKhachHang" required></div>
                 <button type="submit">Lưu</button>
             </form>
         </div>
@@ -145,8 +169,10 @@
             <h3 id="phongTroFormTitle">Thêm Phòng trọ</h3>
             <form id="phongTroForm">
                 <input type="hidden" id="phongTroId">
-                <div class="form-row"><label for="tenPhong">Tên phòng:</label><input type="text" id="tenPhong" required></div>
-                <div class="form-row"><label for="diaChi">Địa chỉ:</label><input type="text" id="diaChi" required></div>
+                <div class="form-row"><label for="maPhong">Mã phòng:</label><input type="text" id="maPhong" required></div>
+                <div class="form-row"><label for="dienTich">Diện tích:</label><input type="number" id="dienTich" required></div>
+                <div class="form-row"><label for="diaChiCuThe">Địa chỉ cụ thể:</label><input type="text" id="diaChiCuThe" required></div>
+                <div class="form-row"><label for="noiThat">Nội thất:</label><input type="text" id="noiThat" required></div>
                 <div class="form-row"><label for="giaThue">Giá thuê:</label><input type="number" id="giaThue" required></div>
                 <div class="form-row">
                     <label for="tinhTrang">Tình trạng:</label>
@@ -189,14 +215,14 @@
             const searchInput = document.getElementById('searchKhachHang');
 
             let khachHangs = [
-                { id: 1, ten: 'Nguyễn Văn A', sdt: '0987654321', email: 'a.nguyen@example.com' },
-                { id: 2, ten: 'Trần Thị B', sdt: '0912345678', email: 'b.tran@example.com' },
-                { id: 3, ten: 'Lê Văn C', sdt: '0901234567', email: 'c.le@example.com' }
+                { id: 1, ten: 'Nguyễn Văn A', tuoi: 25, sdt: '0987654321', diaChi: '111 Yên Nghĩa', gioiTinh: 'Nam', cccd: '001234567890' },
+                { id: 2, ten: 'Trần Thị B', tuoi: 22, sdt: '0912345678', diaChi: '222 Hà Đông', gioiTinh: 'Nữ', cccd: '001987654321' },
+                { id: 3, ten: 'Lê Văn C', tuoi: 28, sdt: '0901234567', diaChi: '333 Thanh Xuân', gioiTinh: 'Nam', cccd: '001112233445' }
             ];
 
             let phongTros = [
-                { id: 1, ten: 'Phòng 101', diaChi: '123 Đường ABC', giaThue: 2500000, tinhTrang: 'Đang cho thuê' },
-                { id: 2, ten: 'Phòng 202', diaChi: '123 Đường ABC', giaThue: 3000000, tinhTrang: 'Còn trống' }
+                { id: 1, maPhong: 'PT001', dienTich: 25, diaChiCuThe: '111 Yên Nghĩa', noiThat: 'Giường, Tủ, Bàn', giaThue: 2500000, tinhTrang: 'Đang cho thuê' },
+                { id: 2, maPhong: 'PT002', dienTich: 30, diaChiCuThe: '222 Hà Đông', noiThat: 'Giường, Tủ, Điều hòa', giaThue: 3000000, tinhTrang: 'Còn trống' }
             ];
             
             let giaoDichs = [
@@ -218,7 +244,7 @@
                 filteredKhachHangs.forEach(khach => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${khach.id}</td><td>${khach.ten}</td><td>${khach.sdt}</td><td>${khach.email}</td>
+                        <td>${khach.id}</td><td>${khach.ten}</td><td>${khach.tuoi}</td><td>${khach.sdt}</td><td>${khach.diaChi}</td><td>${khach.gioiTinh}</td><td>${khach.cccd}</td>
                         <td class="action-buttons">
                             <button class="edit-btn" data-id="${khach.id}" data-type="khachhang">Sửa</button>
                             <button class="delete-btn" data-id="${khach.id}" data-type="khachhang">Xóa</button>
@@ -233,7 +259,7 @@
                 phongTros.forEach(phong => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${phong.id}</td><td>${phong.ten}</td><td>${phong.diaChi}</td><td>${phong.giaThue.toLocaleString()}</td><td>${phong.tinhTrang}</td>
+                        <td>${phong.id}</td><td>${phong.maPhong}</td><td>${phong.dienTich} m²</td><td>${phong.diaChiCuThe}</td><td>${phong.noiThat}</td><td>${phong.giaThue.toLocaleString()}</td><td>${phong.tinhTrang}</td>
                         <td class="action-buttons">
                             <button class="edit-btn" data-id="${phong.id}" data-type="phongtro">Sửa</button>
                             <button class="delete-btn" data-id="${phong.id}" data-type="phongtro">Xóa</button>
@@ -277,7 +303,8 @@
                 const filteredKhachHangs = khachHangs.filter(khach =>
                     khach.ten.toLowerCase().includes(searchTerm) ||
                     khach.sdt.toLowerCase().includes(searchTerm) ||
-                    khach.email.toLowerCase().includes(searchTerm)
+                    khach.diaChi.toLowerCase().includes(searchTerm) ||
+                    khach.cccd.toLowerCase().includes(searchTerm)
                 );
                 renderKhachHangs(filteredKhachHangs);
             });
@@ -314,15 +341,18 @@
                 e.preventDefault();
                 const id = document.getElementById('khachHangId').value;
                 const ten = document.getElementById('tenKhachHang').value;
+                const tuoi = parseInt(document.getElementById('tuoiKhachHang').value);
                 const sdt = document.getElementById('sdtKhachHang').value;
-                const email = document.getElementById('emailKhachHang').value;
+                const diaChi = document.getElementById('diaChiKhachHang').value;
+                const gioiTinh = document.getElementById('gioiTinhKhachHang').value;
+                const cccd = document.getElementById('cccdKhachHang').value;
 
                 if (id) {
                     const index = khachHangs.findIndex(khach => khach.id == id);
-                    if (index > -1) khachHangs[index] = { id: parseInt(id), ten, sdt, email };
+                    if (index > -1) khachHangs[index] = { id: parseInt(id), ten, tuoi, sdt, diaChi, gioiTinh, cccd };
                 } else {
                     const newId = khachHangs.length ? Math.max(...khachHangs.map(khach => khach.id)) + 1 : 1;
-                    khachHangs.push({ id: newId, ten, sdt, email });
+                    khachHangs.push({ id: newId, ten, tuoi, sdt, diaChi, gioiTinh, cccd });
                 }
                 khachHangFormModal.style.display = 'none';
                 renderKhachHangs();
@@ -332,17 +362,19 @@
             document.getElementById('phongTroForm').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const id = document.getElementById('phongTroId').value;
-                const ten = document.getElementById('tenPhong').value;
-                const diaChi = document.getElementById('diaChi').value;
+                const maPhong = document.getElementById('maPhong').value;
+                const dienTich = parseInt(document.getElementById('dienTich').value);
+                const diaChiCuThe = document.getElementById('diaChiCuThe').value;
+                const noiThat = document.getElementById('noiThat').value;
                 const giaThue = parseInt(document.getElementById('giaThue').value);
                 const tinhTrang = document.getElementById('tinhTrang').value;
 
                 if (id) {
                     const index = phongTros.findIndex(phong => phong.id == id);
-                    if (index > -1) phongTros[index] = { id: parseInt(id), ten, diaChi, giaThue, tinhTrang };
+                    if (index > -1) phongTros[index] = { id: parseInt(id), maPhong, dienTich, diaChiCuThe, noiThat, giaThue, tinhTrang };
                 } else {
                     const newId = phongTros.length ? Math.max(...phongTros.map(phong => phong.id)) + 1 : 1;
-                    phongTros.push({ id: newId, ten, diaChi, giaThue, tinhTrang });
+                    phongTros.push({ id: newId, maPhong, dienTich, diaChiCuThe, noiThat, giaThue, tinhTrang });
                 }
                 phongTroFormModal.style.display = 'none';
                 renderPhongTros();
@@ -379,8 +411,11 @@
                             document.getElementById('khachHangFormTitle').textContent = 'Sửa Khách hàng';
                             document.getElementById('khachHangId').value = khach.id;
                             document.getElementById('tenKhachHang').value = khach.ten;
+                            document.getElementById('tuoiKhachHang').value = khach.tuoi;
                             document.getElementById('sdtKhachHang').value = khach.sdt;
-                            document.getElementById('emailKhachHang').value = khach.email;
+                            document.getElementById('diaChiKhachHang').value = khach.diaChi;
+                            document.getElementById('gioiTinhKhachHang').value = khach.gioiTinh;
+                            document.getElementById('cccdKhachHang').value = khach.cccd;
                             khachHangFormModal.style.display = 'flex';
                         }
                     } else if (type === 'phongtro') {
@@ -388,8 +423,10 @@
                         if (phong) {
                             document.getElementById('phongTroFormTitle').textContent = 'Sửa Phòng trọ';
                             document.getElementById('phongTroId').value = phong.id;
-                            document.getElementById('tenPhong').value = phong.ten;
-                            document.getElementById('diaChi').value = phong.diaChi;
+                            document.getElementById('maPhong').value = phong.maPhong;
+                            document.getElementById('dienTich').value = phong.dienTich;
+                            document.getElementById('diaChiCuThe').value = phong.diaChiCuThe;
+                            document.getElementById('noiThat').value = phong.noiThat;
                             document.getElementById('giaThue').value = phong.giaThue;
                             document.getElementById('tinhTrang').value = phong.tinhTrang;
                             phongTroFormModal.style.display = 'flex';
@@ -430,6 +467,3 @@
 </body>
 </html>
 
-
-</body>
-</html>

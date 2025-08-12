@@ -172,6 +172,10 @@
             const bookRoomFormModal = document.getElementById('bookRoomFormModal');
             const searchInput = document.getElementById('searchKhachHang');
 
+            const roomDetailsSection = document.querySelector('.room-details-section');
+            const dataSection = document.querySelector('.data-section');
+            const closeBtn = document.querySelector('.close-btn[data-modal="bookRoomFormModal"]');
+
             let khachHangs = [
                 { id: 1, ten: 'Nguyễn Văn A', tuoi: 25, sdt: '0987654321', diaChi: '111 Yên Nghĩa', gioiTinh: 'Nam', cccd: '001234567890' },
                 { id: 2, ten: 'Trần Thị B', tuoi: 22, sdt: '0912345678', diaChi: '222 Hà Đông', gioiTinh: 'Nữ', cccd: '001987654321' },
@@ -180,4 +184,152 @@
 
             let phongTros = [
                 { id: 1, maPhong: 'PT001', dienTich: 25, diaChiCuThe: '111 Yên Nghĩa', noiThat: 'Giường, Tủ, Bàn', giaThue: 2500000, tinhTrang: 'Đang cho thuê' },
-                { id: 2, maPhong: 'PT002', dienTich: 3
+                { id: 2, maPhong: 'PT002', dienTich: 30, diaChiCuThe: '222 Hà Đông', noiThat: 'Giường, Tủ, Điều hòa', giaThue: 3000000, tinhTrang: 'Còn trống' }
+            ];
+            
+            let giaoDichs = [
+                { id: 1, maKhachHang: 'KH001', maPhong: 'PT001', ngayGiaoDich: '2023-01-15', thoiHan: '12 tháng', tongTien: 5000000 },
+                { id: 2, maKhachHang: 'KH002', maPhong: 'PT002', ngayGiaoDich: '2023-02-20', thoiHan: '6 tháng', tongTien: 6000000 }
+            ];
+            
+            let bookingRequests = [];
+
+            const renderView = (viewId) => {
+                views.forEach(view => {
+                    view.classList.remove('active-view');
+                    if (view.id === viewId) {
+                        view.classList.add('active-view');
+                    }
+                });
+            };
+
+            const renderKhachHangs = (filteredKhachHangs = khachHangs) => {
+                khachHangTableBody.innerHTML = '';
+                filteredKhachHangs.forEach(khach => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${khach.id}</td><td>${khach.ten}</td><td>${khach.tuoi}</td><td>${khach.sdt}</td><td>${khach.diaChi}</td><td>${khach.gioiTinh}</td><td>${khach.cccd}</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn" data-id="${khach.id}" data-type="khachhang">Sửa</button>
+                            <button class="delete-btn" data-id="${khach.id}" data-type="khachhang">Xóa</button>
+                        </td>
+                    `;
+                    khachHangTableBody.appendChild(row);
+                });
+            };
+
+            const renderPhongTros = () => {
+                phongTroTableBody.innerHTML = '';
+                phongTros.forEach(phong => {
+                    const row = document.createElement('tr');
+                    const bookBtnHtml = '';
+                    row.innerHTML = `
+                        <td>${phong.id}</td><td>${phong.maPhong}</td><td>${phong.dienTich} m²</td><td>${phong.diaChiCuThe}</td><td>${phong.noiThat}</td><td>${phong.giaThue.toLocaleString()}</td><td>${phong.tinhTrang}</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn" data-id="${phong.id}" data-type="phongtro">Sửa</button>
+                            <button class="delete-btn" data-id="${phong.id}" data-type="phongtro">Xóa</button>
+                            ${bookBtnHtml}
+                        </td>
+                    `;
+                    phongTroTableBody.appendChild(row);
+                });
+            };
+            
+            const renderGiaoDichs = () => {
+                giaoDichTableBody.innerHTML = '';
+                giaoDichs.forEach(giaoDich => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${giaoDich.id}</td><td>${giaoDich.maKhachHang}</td><td>${giaoDich.maPhong}</td><td>${giaoDich.ngayGiaoDich}</td><td>${giaoDich.thoiHan}</td><td>${giaoDich.tongTien.toLocaleString()}</td>
+                        <td class="action-buttons">
+                            <button class="edit-btn" data-id="${giaoDich.id}" data-type="giaodich">Sửa</button>
+                            <button class="delete-btn" data-id="${giaoDich.id}" data-type="giaodich">Xóa</button>
+                        </td>
+                    `;
+                    giaoDichTableBody.appendChild(row);
+                });
+            };
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const viewId = e.target.dataset.view;
+                    if (viewId) {
+                        renderView(viewId);
+                        if (viewId === 'khachhang') renderKhachHangs();
+                        if (viewId === 'phongtro') renderPhongTros();
+                        if (viewId === 'giaodich') renderGiaoDichs();
+                    }
+                });
+            });
+
+            // Thanh tìm kiếm khách hàng
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredKhachHangs = khachHangs.filter(khach =>
+                    khach.ten.toLowerCase().includes(searchTerm) ||
+                    khach.sdt.toLowerCase().includes(searchTerm) ||
+                    khach.diaChi.toLowerCase().includes(searchTerm) ||
+                    khach.cccd.toLowerCase().includes(searchTerm)
+                );
+                renderView('khachhang');
+                renderKhachHangs(filteredKhachHangs);
+            });
+
+            // Nút "Đặt phòng" trên trang chủ
+            bookNowBtn.addEventListener('click', () => {
+                const maPhongMacDinh = 'PT203';
+                const phongMacDinh = phongTros.find(phong => phong.maPhong === maPhongMacDinh);
+                
+                if (phongMacDinh && phongMacDinh.tinhTrang === 'Còn trống') {
+                    document.getElementById('bookingMaPhong').value = maPhongMacDinh;
+                    bookRoomFormModal.style.display = 'flex';
+                    roomDetailsSection.style.display = 'none';
+                    dataSection.style.display = 'none';
+                } else {
+                    alert('Phòng này đã có người đặt, bạn vui lòng chọn phòng khác.');
+                }
+            });
+
+            // Xử lý Form đặt phòng từ modal
+            document.getElementById('bookRoomForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const maKhach = document.getElementById('bookingMaKhach').value;
+                const maPhong = document.getElementById('bookingMaPhong').value;
+                const ngayBatDau = document.getElementById('bookingStartDate').value;
+                const thoiHan = document.getElementById('bookingDuration').value;
+
+                const phong = phongTros.find(p => p.maPhong === maPhong);
+                const tongTien = phong ? phong.giaThue * thoiHan : 0;
+
+                const newBooking = {
+                    maKhach,
+                    maPhong,
+                    ngayBatDau,
+                    thoiHan: `${thoiHan} tháng`,
+                    tongTien
+                };
+                
+                bookingRequests.push(newBooking);
+                
+                console.log('Yêu cầu đặt phòng mới:', newBooking);
+                alert(`Yêu cầu đặt phòng mã ${maPhong} của khách hàng ${maKhach} đã được gửi thành công!`);
+
+                bookRoomFormModal.style.display = 'none';
+                roomDetailsSection.style.display = 'flex';
+                dataSection.style.display = 'grid';
+                document.getElementById('bookRoomForm').reset();
+            });
+
+            // Các nút "Đóng modal"
+            closeBtn.addEventListener('click', () => {
+                bookRoomFormModal.style.display = 'none';
+                roomDetailsSection.style.display = 'flex';
+                dataSection.style.display = 'grid';
+            });
+
+            renderView('home');
+        });
+    </script>
+</body>
+</html>

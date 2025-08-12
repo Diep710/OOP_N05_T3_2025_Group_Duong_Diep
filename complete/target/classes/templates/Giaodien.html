@@ -141,7 +141,17 @@
         <h2>Danh sách Giao dịch</h2>
         <button id="addGiaoDichBtn">Thêm giao dịch</button>
         <table class="data-table">
-            <thead><tr><th>ID</th><th>Mã phòng</th><th>Tên khách hàng</th><th>Ngày giao dịch</th><th>Tổng tiền</th><th>Thao tác</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Mã khách hàng</th>
+                    <th>Mã phòng</th>
+                    <th>Ngày giao dịch</th>
+                    <th>Thời hạn</th>
+                    <th>Tổng tiền</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
             <tbody id="giaoDichTableBody"></tbody>
         </table>
     </div>
@@ -192,9 +202,10 @@
             <h3 id="giaoDichFormTitle">Thêm Giao dịch</h3>
             <form id="giaoDichForm">
                 <input type="hidden" id="giaoDichId">
+                <div class="form-row"><label for="maKhachGiaoDich">Mã khách hàng:</label><input type="text" id="maKhachGiaoDich" required></div>
                 <div class="form-row"><label for="maPhongGiaoDich">Mã phòng:</label><input type="text" id="maPhongGiaoDich" required></div>
-                <div class="form-row"><label for="tenKhachGiaoDich">Tên khách hàng:</label><input type="text" id="tenKhachGiaoDich" required></div>
                 <div class="form-row"><label for="ngayGiaoDich">Ngày giao dịch:</label><input type="date" id="ngayGiaoDich" required></div>
+                <div class="form-row"><label for="thoiHanGiaoDich">Thời hạn:</label><input type="text" id="thoiHanGiaoDich" required></div>
                 <div class="form-row"><label for="tongTienGiaoDich">Tổng tiền:</label><input type="number" id="tongTienGiaoDich" required></div>
                 <button type="submit">Lưu</button>
             </form>
@@ -226,8 +237,8 @@
             ];
             
             let giaoDichs = [
-                { id: 1, maPhong: 'PT001', tenKhach: 'Nguyễn Văn A', ngayGiaoDich: '2023-01-15', tongTien: 5000000 },
-                { id: 2, maPhong: 'PT002', tenKhach: 'Trần Thị B', ngayGiaoDich: '2023-02-20', tongTien: 6000000 }
+                { id: 1, maKhachHang: 'KH001', maPhong: 'PT001', ngayGiaoDich: '2023-01-15', thoiHan: '12 tháng', tongTien: 5000000 },
+                { id: 2, maKhachHang: 'KH002', maPhong: 'PT002', ngayGiaoDich: '2023-02-20', thoiHan: '6 tháng', tongTien: 6000000 }
             ];
 
             const renderView = (viewId) => {
@@ -274,7 +285,7 @@
                 giaoDichs.forEach(giaoDich => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${giaoDich.id}</td><td>${giaoDich.maPhong}</td><td>${giaoDich.tenKhach}</td><td>${giaoDich.ngayGiaoDich}</td><td>${giaoDich.tongTien.toLocaleString()}</td>
+                        <td>${giaoDich.id}</td><td>${giaoDich.maKhachHang}</td><td>${giaoDich.maPhong}</td><td>${giaoDich.ngayGiaoDich}</td><td>${giaoDich.thoiHan}</td><td>${giaoDich.tongTien.toLocaleString()}</td>
                         <td class="action-buttons">
                             <button class="edit-btn" data-id="${giaoDich.id}" data-type="giaodich">Sửa</button>
                             <button class="delete-btn" data-id="${giaoDich.id}" data-type="giaodich">Xóa</button>
@@ -306,6 +317,8 @@
                     khach.diaChi.toLowerCase().includes(searchTerm) ||
                     khach.cccd.toLowerCase().includes(searchTerm)
                 );
+                // Chuyển sang tab khách hàng và hiển thị kết quả tìm kiếm
+                renderView('khachhang');
                 renderKhachHangs(filteredKhachHangs);
             });
 
@@ -384,17 +397,18 @@
             document.getElementById('giaoDichForm').addEventListener('submit', (e) => {
                 e.preventDefault();
                 const id = document.getElementById('giaoDichId').value;
+                const maKhachHang = document.getElementById('maKhachGiaoDich').value;
                 const maPhong = document.getElementById('maPhongGiaoDich').value;
-                const tenKhach = document.getElementById('tenKhachGiaoDich').value;
                 const ngayGiaoDich = document.getElementById('ngayGiaoDich').value;
+                const thoiHan = document.getElementById('thoiHanGiaoDich').value;
                 const tongTien = parseInt(document.getElementById('tongTienGiaoDich').value);
 
                 if (id) {
                     const index = giaoDichs.findIndex(gd => gd.id == id);
-                    if (index > -1) giaoDichs[index] = { id: parseInt(id), maPhong, tenKhach, ngayGiaoDich, tongTien };
+                    if (index > -1) giaoDichs[index] = { id: parseInt(id), maKhachHang, maPhong, ngayGiaoDich, thoiHan, tongTien };
                 } else {
                     const newId = giaoDichs.length ? Math.max(...giaoDichs.map(gd => gd.id)) + 1 : 1;
-                    giaoDichs.push({ id: newId, maPhong, tenKhach, ngayGiaoDich, tongTien });
+                    giaoDichs.push({ id: newId, maKhachHang, maPhong, ngayGiaoDich, thoiHan, tongTien });
                 }
                 giaoDichFormModal.style.display = 'none';
                 renderGiaoDichs();
@@ -436,9 +450,10 @@
                         if (giaoDich) {
                             document.getElementById('giaoDichFormTitle').textContent = 'Sửa Giao dịch';
                             document.getElementById('giaoDichId').value = giaoDich.id;
+                            document.getElementById('maKhachGiaoDich').value = giaoDich.maKhachHang;
                             document.getElementById('maPhongGiaoDich').value = giaoDich.maPhong;
-                            document.getElementById('tenKhachGiaoDich').value = giaoDich.tenKhach;
                             document.getElementById('ngayGiaoDich').value = giaoDich.ngayGiaoDich;
+                            document.getElementById('thoiHanGiaoDich').value = giaoDich.thoiHan;
                             document.getElementById('tongTienGiaoDich').value = giaoDich.tongTien;
                             giaoDichFormModal.style.display = 'flex';
                         }
@@ -466,4 +481,5 @@
     </script>
 </body>
 </html>
+
 

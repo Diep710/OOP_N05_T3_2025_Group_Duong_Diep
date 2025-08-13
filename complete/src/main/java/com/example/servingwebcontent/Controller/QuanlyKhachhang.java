@@ -2,6 +2,7 @@ package com.example.servingwebcontent.Controller;
 import com.example.servingwebcontent.Database.KhachhangAiven;
 import com.example.servingwebcontent.Model.Khachhang;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,13 @@ import java.util.ArrayList;
 
 @Controller
 public class QuanlyKhachhang {
+
+    @Value("${my.database.url}")
+private String myDatabaseURL;
+
+@Value("${my.database.driver}")
+private String myDatabaseDriver;
+
     @GetMapping("/khachhanglist")
 	public String khachhanglist(Model model) {
 

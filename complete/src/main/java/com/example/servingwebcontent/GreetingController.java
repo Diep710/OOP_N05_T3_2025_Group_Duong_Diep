@@ -5,13 +5,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.servingwebcontent.Model.Khachhang;
+
 
 @Controller
 public class GreetingController {
-	@GetMapping("/khachhang")
+	@GetMapping("/")
 	public String Khachhang(Model model) {
+		model.addAttribute("Khachhang", new Khachhang());
 
-		return "khachhang";
+		return "Giaodien";
 	}
 
 	@GetMapping("/greeting")

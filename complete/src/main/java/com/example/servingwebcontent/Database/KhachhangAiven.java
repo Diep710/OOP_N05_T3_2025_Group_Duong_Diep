@@ -4,11 +4,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import com.example.servingwebcontent.Model.Khachhang;
 
 @Controller
 public class KhachhangAiven {
+
+
+    @Value("${my.database.url}")
+private String myDatabaseURL;
+
+@Value("${my.database.driver}")
+private String myDatabaseDriver;
+
+
      ArrayList<Khachhang> items = new ArrayList<Khachhang>();
 
     public ArrayList<Khachhang> khachhangAivenList() {

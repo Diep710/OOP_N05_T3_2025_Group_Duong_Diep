@@ -2,7 +2,29 @@
 
 # Sơ đồ chức năng
 
-![Image](https://github.com/user-attachments/assets/67846689-fdaa-4fea-8505-d0090e4fe766)
+![Image](anh/z6908044279625_f22407d1c94842130412d25b90b3ea5d.jpg)
+
+# Activity Diagram:
+
+1.Đặt phòng trọ
+
+![Image](anh/datphong.jpg)
+
+2.Tìm kiếm phòng trọ
+
+![Image](anh/z6907821182947_a16974528b28b5e252cd5e99571c6549.jpg)
+
+3.Thêm giao dịch
+
+![Image](anh/z6907836403907_edbe758ae716f228a5b8ab8dd4d5c1f3.jpg)
+
+4.Sửa thông tin khách hàng
+
+![Image](anh/z6907860456443_7af3892abf9ddc97d3df3063a46acef7.jpg)
+
+5.Xoá thông tin khách hàng
+
+![Image](anh/z6907860492900_db8251615654a6df681bb20d2fb07786.jpg)
 
 # Đối tượng
 

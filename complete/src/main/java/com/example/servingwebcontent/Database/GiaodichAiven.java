@@ -10,7 +10,7 @@ import com.example.servingwebcontent.Model.Giaodich;
 @Controller
 public class GiaodichAiven {
              ArrayList<Giaodich> items = new ArrayList<Giaodich>();
-
+//READ- LẤY DANH SACH GIAO DỊCH
     public ArrayList<Giaodich> giaodichAivenList() {
 
         try {
@@ -64,6 +64,7 @@ public class GiaodichAiven {
         return items;
 
     }
+    //CREATE- THÊM GIAO DỊCH MỚI
     public boolean createGiaodich(Giaodich gd) {
         try {
             myDBConnection my = new myDBConnection();

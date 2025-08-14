@@ -31,15 +31,23 @@ public class insertToAiven {
 
             //
             
-            String ur = kh.getMakhachhang();
-            String ad = kh.getHovaten();
-            String tu = kh.getTuoi();
+            String mkh = kh.getMakhachhang();
+            String hvt = kh.getHovaten();
+            String t = kh.getTuoi();
+            String sdt = kh.getSodienthoai();
+            String dc = kh.getDiachi();
+            String gt = kh.getGioitinh();
+            String cc = kh.getCccd();
 
-            String reset = "INSERT INTO Khachhang(makhachhang, hovaten, tuoi) VALUES(?, ?, ?)";
+            String reset = "INSERT INTO Khachhang(makhachhang, hovaten, tuoi, sodienthoai, diachi, gioitinh, cccd) VALUES(?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement pst = conn.prepareStatement(reset)) {
-                pst.setString(1, ur);
-                pst.setString(2, ad);
-                pst.setString(3, tu);
+                pst.setString(1, mkh);
+                pst.setString(2, hvt);
+                pst.setString(3, t);
+                pst.setString(3, sdt);
+                pst.setString(3, dc);
+                pst.setString(3, gt);
+                pst.setString(3, cc);
                 pst.executeUpdate();
             }
             System.out.println("Display data from database: ");

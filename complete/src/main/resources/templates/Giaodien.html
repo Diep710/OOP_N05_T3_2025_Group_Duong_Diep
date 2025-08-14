@@ -152,7 +152,10 @@
             <h3 id="bookRoomFormTitle">Đặt phòng</h3>
             <form id="bookRoomForm">
                 <div class="form-row"><label for="bookingMaKhach">Mã khách hàng:</label><input type="text" id="bookingMaKhach" required></div>
-                <div class="form-row"><label for="bookingMaPhong">Mã phòng:</label><input type="text" id="bookingMaPhong" readonly></div>
+                <div class="form-row"><label for="bookingMaPhong">Mã phòng:</label><input type="text" id="bookingMaPhong" required></div>
+                <div class="form-row"><label for="bookingTenKhach">Tên khách hàng:</label><input type="text" id="bookingTenKhach" required></div>
+                <div class="form-row"><label for="bookingSdtKhach">Số điện thoại:</label><input type="text" id="bookingSdtKhach" required></div>
+                <div class="form-row"><label for="bookingCccdKhach">CCCD:</label><input type="text" id="bookingCccdKhach" required></div>
                 <div class="form-row"><label for="bookingStartDate">Ngày bắt đầu thuê:</label><input type="date" id="bookingStartDate" required></div>
                 <div class="form-row"><label for="bookingDuration">Thời hạn thuê (tháng):</label><input type="number" id="bookingDuration" required></div>
                 <button type="submit">Xác nhận đặt phòng</button>
@@ -198,6 +201,62 @@
         </div>
     </div>
 
+    <div id="editKhachHangModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" data-modal="editKhachHangModal">&times;</span>
+            <h3>Sửa thông tin khách hàng</h3>
+            <form id="editKhachHangForm">
+                <input type="hidden" id="editKhachHangId">
+                <div class="form-row"><label for="editTenKH">Tên khách hàng:</label><input type="text" id="editTenKH" required></div>
+                <div class="form-row"><label for="editTuoiKH">Tuổi:</label><input type="number" id="editTuoiKH"></div>
+                <div class="form-row"><label for="editSdtKH">Số điện thoại:</label><input type="text" id="editSdtKH" required></div>
+                <div class="form-row"><label for="editDiaChiKH">Địa chỉ:</label><input type="text" id="editDiaChiKH"></div>
+                <div class="form-row"><label for="editGioiTinhKH">Giới tính:</label><input type="text" id="editGioiTinhKH"></div>
+                <div class="form-row"><label for="editCccdKH">CCCD:</label><input type="text" id="editCccdKH" required></div>
+                <button type="submit">Lưu thay đổi</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="editPhongTroModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" data-modal="editPhongTroModal">&times;</span>
+            <h3>Sửa thông tin phòng trọ</h3>
+            <form id="editPhongTroForm">
+                <input type="hidden" id="editPhongTroId">
+                <div class="form-row"><label for="editMaPhong">Mã phòng:</label><input type="text" id="editMaPhong" required></div>
+                <div class="form-row"><label for="editDienTich">Diện tích (m²):</label><input type="number" id="editDienTich" required></div>
+                <div class="form-row"><label for="editDiaChi">Địa chỉ cụ thể:</label><input type="text" id="editDiaChi" required></div>
+                <div class="form-row"><label for="editNoiThat">Nội thất:</label><input type="text" id="editNoiThat"></div>
+                <div class="form-row"><label for="editGiaThue">Giá thuê:</label><input type="number" id="editGiaThue" required></div>
+                <div class="form-row">
+                    <label for="editTinhTrang">Tình trạng:</label>
+                    <select id="editTinhTrang" required>
+                        <option value="Còn trống">Còn trống</option>
+                        <option value="Đang cho thuê">Đang cho thuê</option>
+                    </select>
+                </div>
+                <button type="submit">Lưu thay đổi</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="editGiaoDichModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" data-modal="editGiaoDichModal">&times;</span>
+            <h3>Sửa thông tin giao dịch</h3>
+            <form id="editGiaoDichForm">
+                <input type="hidden" id="editGiaoDichId">
+                <div class="form-row"><label for="editMaKhachHang">Mã khách hàng:</label><input type="text" id="editMaKhachHang" required></div>
+                <div class="form-row"><label for="editMaPhong">Mã phòng:</label><input type="text" id="editMaPhong" required></div>
+                <div class="form-row"><label for="editNgayGiaoDich">Ngày giao dịch:</label><input type="date" id="editNgayGiaoDich" required></div>
+                <div class="form-row"><label for="editThoiHan">Thời hạn (tháng):</label><input type="number" id="editThoiHan" required></div>
+                <button type="submit">Lưu thay đổi</button>
+            </form>
+        </div>
+    </div>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const views = document.querySelectorAll('.main-content, .content-view');
@@ -210,20 +269,24 @@
             const bookRoomFormModal = document.getElementById('bookRoomFormModal');
             const addRoomFormModal = document.getElementById('addRoomFormModal');
             const addKhachHangFormModal = document.getElementById('addKhachHangFormModal');
+            const editKhachHangModal = document.getElementById('editKhachHangModal');
+            const editPhongTroModal = document.getElementById('editPhongTroModal');
+            const editGiaoDichModal = document.getElementById('editGiaoDichModal');
             const searchInput = document.getElementById('searchKhachHang');
 
             const roomDetailsSection = document.querySelector('.room-details-section');
             const dataSection = document.querySelector('.data-section');
             
             let khachHangs = [
-                { id: 1, ten: 'Nguyễn Văn A', tuoi: 25, sdt: '0987654321', diaChi: '111 Yên Nghĩa', gioiTinh: 'Nam', cccd: '001234567890' },
-                { id: 2, ten: 'Trần Thị B', tuoi: 22, sdt: '0912345678', diaChi: '222 Hà Đông', gioiTinh: 'Nữ', cccd: '001987654321' },
-                { id: 3, ten: 'Lê Văn C', tuoi: 28, sdt: '0901234567', diaChi: '333 Thanh Xuân', gioiTinh: 'Nam', cccd: '001112233445' }
+                { id: 1, maKhachHang: 'KH001', ten: 'Nguyễn Văn A', tuoi: 25, sdt: '0987654321', diaChi: '111 Yên Nghĩa', gioiTinh: 'Nam', cccd: '001234567890' },
+                { id: 2, maKhachHang: 'KH002', ten: 'Trần Thị B', tuoi: 22, sdt: '0912345678', diaChi: '222 Hà Đông', gioiTinh: 'Nữ', cccd: '001987654321' },
+                { id: 3, maKhachHang: 'KH003', ten: 'Lê Văn C', tuoi: 28, sdt: '0901234567', diaChi: '333 Thanh Xuân', gioiTinh: 'Nam', cccd: '001112233445' }
             ];
 
             let phongTros = [
                 { id: 1, maPhong: 'PT001', dienTich: 25, diaChiCuThe: '111 Yên Nghĩa', noiThat: 'Giường, Tủ, Bàn', giaThue: 2500000, tinhTrang: 'Đang cho thuê' },
-                { id: 2, maPhong: 'PT002', dienTich: 30, diaChiCuThe: '222 Hà Đông', noiThat: 'Giường, Tủ, Điều hòa', giaThue: 3000000, tinhTrang: 'Còn trống' }
+                { id: 2, maPhong: 'PT002', dienTich: 30, diaChiCuThe: '222 Hà Đông', noiThat: 'Giường, Tủ, Điều hòa', giaThue: 3000000, tinhTrang: 'Còn trống' },
+                { id: 3, maPhong: 'PT003', dienTich: 20, diaChiCuThe: '444 Cầu Giấy', noiThat: 'Giường, Tủ', giaThue: 2000000, tinhTrang: 'Còn trống' }
             ];
             
             let giaoDichs = [
@@ -245,7 +308,7 @@
                 filteredKhachHangs.forEach(khach => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${khach.id}</td><td>${khach.ten}</td><td>${khach.tuoi}</td><td>${khach.sdt}</td><td>${khach.diaChi}</td><td>${khach.gioiTinh}</td><td>${khach.cccd}</td>
+                        <td>${khach.id}</td><td>${khach.ten}</td><td>${khach.tuoi || 'N/A'}</td><td>${khach.sdt}</td><td>${khach.diaChi || 'N/A'}</td><td>${khach.gioiTinh || 'N/A'}</td><td>${khach.cccd}</td>
                         <td class="action-buttons">
                             <button class="edit-btn" data-id="${khach.id}" data-type="khachhang">Sửa</button>
                             <button class="delete-btn" data-id="${khach.id}" data-type="khachhang">Xóa</button>
@@ -317,16 +380,13 @@
 
             // Nút "Đặt phòng" trên trang chủ
             bookNowBtn.addEventListener('click', () => {
-                const maPhongMacDinh = 'PT002'; 
-                const phongMacDinh = phongTros.find(phong => phong.maPhong === maPhongMacDinh);
-                
-                if (phongMacDinh && phongMacDinh.tinhTrang === 'Còn trống') {
-                    document.getElementById('bookingMaPhong').value = maPhongMacDinh;
+                // Tự động điền mã phòng đầu tiên còn trống (ví dụ)
+                const phongTrong = phongTros.find(phong => phong.tinhTrang === 'Còn trống');
+                if (phongTrong) {
+                    document.getElementById('bookingMaPhong').value = phongTrong.maPhong;
                     bookRoomFormModal.style.display = 'flex';
-                    roomDetailsSection.style.display = 'none';
-                    dataSection.style.display = 'none';
                 } else {
-                    alert('Phòng này đã có người đặt, bạn vui lòng chọn phòng khác.');
+                    alert('Hiện tại không có phòng trống nào.');
                 }
             });
 
@@ -344,16 +404,41 @@
                 e.preventDefault();
                 const maKhach = document.getElementById('bookingMaKhach').value;
                 const maPhong = document.getElementById('bookingMaPhong').value;
+                const tenKhach = document.getElementById('bookingTenKhach').value;
+                const sdtKhach = document.getElementById('bookingSdtKhach').value;
+                const cccdKhach = document.getElementById('bookingCccdKhach').value;
                 const ngayBatDau = document.getElementById('bookingStartDate').value;
                 const thoiHan = parseInt(document.getElementById('bookingDuration').value);
 
                 const phong = phongTros.find(p => p.maPhong === maPhong);
+                
+                if (!phong) {
+                    alert('Mã phòng không hợp lệ!');
+                    return;
+                }
+                
+                if (phong.tinhTrang !== 'Còn trống') {
+                    alert('Phòng đã có người đặt hoặc không thể đặt!');
+                    return;
+                }
+                
+                // Thêm khách hàng mới nếu chưa tồn tại
+                const existingKhach = khachHangs.find(kh => kh.maKhachHang === maKhach);
+                if (!existingKhach) {
+                    const newKhachHang = {
+                        id: khachHangs.length > 0 ? Math.max(...khachHangs.map(kh => kh.id)) + 1 : 1,
+                        maKhachHang: maKhach,
+                        ten: tenKhach,
+                        sdt: sdtKhach,
+                        cccd: cccdKhach
+                    };
+                    khachHangs.push(newKhachHang);
+                }
+
                 const tongTien = phong ? phong.giaThue * thoiHan : 0;
                 
                 // Cập nhật tình trạng phòng
-                if (phong) {
-                    phong.tinhTrang = 'Đang cho thuê';
-                }
+                phong.tinhTrang = 'Đang cho thuê';
 
                 // Thêm giao dịch mới
                 const newGiaoDich = {
@@ -367,11 +452,12 @@
                 giaoDichs.push(newGiaoDich);
                 
                 console.log('Yêu cầu đặt phòng mới:', newGiaoDich);
-                alert(`Yêu cầu đặt phòng mã ${maPhong} của khách hàng ${maKhach} đã được gửi thành công!`);
+                alert(`Yêu cầu đặt phòng mã ${maPhong} của khách hàng ${tenKhach} đã được gửi thành công!`);
 
                 bookRoomFormModal.style.display = 'none';
                 document.getElementById('bookRoomForm').reset();
                 renderPhongTros(); // Cập nhật lại danh sách phòng
+                renderKhachHangs(); // Cập nhật lại danh sách khách hàng
             });
 
             // Mở modal thêm phòng
@@ -421,6 +507,118 @@
                 renderKhachHangs();
                 alert('Thêm khách hàng mới thành công!');
             });
+
+            // Xử lý sự kiện Sửa/Xóa chung
+            document.body.addEventListener('click', (e) => {
+                const target = e.target;
+                if (target.classList.contains('edit-btn')) {
+                    const id = parseInt(target.dataset.id);
+                    const type = target.dataset.type;
+                    if (type === 'khachhang') {
+                        const khach = khachHangs.find(k => k.id === id);
+                        document.getElementById('editKhachHangId').value = khach.id;
+                        document.getElementById('editTenKH').value = khach.ten;
+                        document.getElementById('editTuoiKH').value = khach.tuoi || '';
+                        document.getElementById('editSdtKH').value = khach.sdt;
+                        document.getElementById('editDiaChiKH').value = khach.diaChi || '';
+                        document.getElementById('editGioiTinhKH').value = khach.gioiTinh || '';
+                        document.getElementById('editCccdKH').value = khach.cccd;
+                        editKhachHangModal.style.display = 'flex';
+                    } else if (type === 'phongtro') {
+                        const phong = phongTros.find(p => p.id === id);
+                        document.getElementById('editPhongTroId').value = phong.id;
+                        document.getElementById('editMaPhong').value = phong.maPhong;
+                        document.getElementById('editDienTich').value = phong.dienTich;
+                        document.getElementById('editDiaChi').value = phong.diaChiCuThe;
+                        document.getElementById('editNoiThat').value = phong.noiThat;
+                        document.getElementById('editGiaThue').value = phong.giaThue;
+                        document.getElementById('editTinhTrang').value = phong.tinhTrang;
+                        editPhongTroModal.style.display = 'flex';
+                    } else if (type === 'giaodich') {
+                        const giaoDich = giaoDichs.find(gd => gd.id === id);
+                        document.getElementById('editGiaoDichId').value = giaoDich.id;
+                        document.getElementById('editMaKhachHang').value = giaoDich.maKhachHang;
+                        document.getElementById('editMaPhong').value = giaoDich.maPhong;
+                        document.getElementById('editNgayGiaoDich').value = giaoDich.ngayGiaoDich;
+                        document.getElementById('editThoiHan').value = parseInt(giaoDich.thoiHan);
+                        editGiaoDichModal.style.display = 'flex';
+                    }
+                } else if (target.classList.contains('delete-btn')) {
+                    const id = parseInt(target.dataset.id);
+                    const type = target.dataset.type;
+                    if (confirm(`Bạn có chắc chắn muốn xóa mục này không?`)) {
+                        if (type === 'khachhang') {
+                            khachHangs = khachHangs.filter(k => k.id !== id);
+                            renderKhachHangs();
+                        } else if (type === 'phongtro') {
+                            phongTros = phongTros.filter(p => p.id !== id);
+                            renderPhongTros();
+                        } else if (type === 'giaodich') {
+                            giaoDichs = giaoDichs.filter(gd => gd.id !== id);
+                            renderGiaoDichs();
+                        }
+                        alert('Đã xóa thành công!');
+                    }
+                }
+            });
+
+            // Xử lý form sửa khách hàng
+            document.getElementById('editKhachHangForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = parseInt(document.getElementById('editKhachHangId').value);
+                const khach = khachHangs.find(k => k.id === id);
+                if (khach) {
+                    khach.ten = document.getElementById('editTenKH').value;
+                    khach.tuoi = parseInt(document.getElementById('editTuoiKH').value);
+                    khach.sdt = document.getElementById('editSdtKH').value;
+                    khach.diaChi = document.getElementById('editDiaChiKH').value;
+                    khach.gioiTinh = document.getElementById('editGioiTinhKH').value;
+                    khach.cccd = document.getElementById('editCccdKH').value;
+                    alert('Sửa thông tin khách hàng thành công!');
+                    editKhachHangModal.style.display = 'none';
+                    renderKhachHangs();
+                }
+            });
+
+            // Xử lý form sửa phòng trọ
+            document.getElementById('editPhongTroForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = parseInt(document.getElementById('editPhongTroId').value);
+                const phong = phongTros.find(p => p.id === id);
+                if (phong) {
+                    phong.maPhong = document.getElementById('editMaPhong').value;
+                    phong.dienTich = parseInt(document.getElementById('editDienTich').value);
+                    phong.diaChiCuThe = document.getElementById('editDiaChi').value;
+                    phong.noiThat = document.getElementById('editNoiThat').value;
+                    phong.giaThue = parseInt(document.getElementById('editGiaThue').value);
+                    phong.tinhTrang = document.getElementById('editTinhTrang').value;
+                    alert('Sửa thông tin phòng trọ thành công!');
+                    editPhongTroModal.style.display = 'none';
+                    renderPhongTros();
+                }
+            });
+            
+            // Xử lý form sửa giao dịch
+            document.getElementById('editGiaoDichForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = parseInt(document.getElementById('editGiaoDichId').value);
+                const giaoDich = giaoDichs.find(gd => gd.id === id);
+                if (giaoDich) {
+                    const newThoiHan = parseInt(document.getElementById('editThoiHan').value);
+                    const phong = phongTros.find(p => p.maPhong === document.getElementById('editMaPhong').value);
+                    const newTongTien = phong ? phong.giaThue * newThoiHan : 0;
+                    
+                    giaoDich.maKhachHang = document.getElementById('editMaKhachHang').value;
+                    giaoDich.maPhong = document.getElementById('editMaPhong').value;
+                    giaoDich.ngayGiaoDich = document.getElementById('editNgayGiaoDich').value;
+                    giaoDich.thoiHan = `${newThoiHan} tháng`;
+                    giaoDich.tongTien = newTongTien;
+                    alert('Sửa thông tin giao dịch thành công!');
+                    editGiaoDichModal.style.display = 'none';
+                    renderGiaoDichs();
+                }
+            });
+
 
             // Đóng các modal
             document.querySelectorAll('.close-btn').forEach(btn => {

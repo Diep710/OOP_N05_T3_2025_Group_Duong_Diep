@@ -156,6 +156,10 @@
                 <div class="form-row"><label for="bookingTenKhach">Tên khách hàng:</label><input type="text" id="bookingTenKhach" required></div>
                 <div class="form-row"><label for="bookingSdtKhach">Số điện thoại:</label><input type="text" id="bookingSdtKhach" required></div>
                 <div class="form-row"><label for="bookingCccdKhach">CCCD:</label><input type="text" id="bookingCccdKhach" required></div>
+                <div class="form-row"><label for="bookingGioiTinhKhach">Giới tính:</label><input type="text" id="bookingGioiTinhKhach"></div>
+                <div class="form-row"><label for="bookingDiaChiKhach">Địa chỉ:</label><input type="text" id="bookingDiaChiKhach"></div>
+                <div class="form-row"><label for="bookingTuoiKhach">Tuổi:</label><input type="number" id="bookingTuoiKhach"></div>
+                <div class="form-row"><label for="bookingGiaThuePhong">Giá thuê:</label><input type="number" id="bookingGiaThuePhong" required></div>
                 <div class="form-row"><label for="bookingStartDate">Ngày bắt đầu thuê:</label><input type="date" id="bookingStartDate" required></div>
                 <div class="form-row"><label for="bookingDuration">Thời hạn thuê (tháng):</label><input type="number" id="bookingDuration" required></div>
                 <button type="submit">Xác nhận đặt phòng</button>
@@ -406,6 +410,12 @@
                 const tenKhach = document.getElementById('bookingTenKhach').value;
                 const sdtKhach = document.getElementById('bookingSdtKhach').value;
                 const cccdKhach = document.getElementById('bookingCccdKhach').value;
+                
+                const gioiTinhKhach = document.getElementById('bookingGioiTinhKhach').value;
+                const diaChiKhach = document.getElementById('bookingDiaChiKhach').value;
+                const tuoiKhach = parseInt(document.getElementById('bookingTuoiKhach').value);
+                const giaThuePhong = parseInt(document.getElementById('bookingGiaThuePhong').value);
+
                 const ngayBatDau = document.getElementById('bookingStartDate').value;
                 const thoiHan = parseInt(document.getElementById('bookingDuration').value);
 
@@ -416,7 +426,7 @@
                     return;
                 }
                 
-                // Tạo khách hàng mới nếu chưa có
+                // Thêm khách hàng mới nếu chưa có
                 const existingKhach = khachHangs.find(kh => kh.maKhachHang === maKhach);
                 if (!existingKhach) {
                     const newKhachHang = {
@@ -424,29 +434,34 @@
                         maKhachHang: maKhach,
                         ten: tenKhach,
                         sdt: sdtKhach,
-                        cccd: cccdKhach
+                        cccd: cccdKhach,
+                        tuoi: tuoiKhach,
+                        diaChi: diaChiKhach,
+                        gioiTinh: gioiTinhKhach
                     };
                     khachHangs.push(newKhachHang);
                 }
 
+                let phongSauDat;
                 // Xử lý khi mã phòng chưa tồn tại (đặt phòng mới hoàn toàn)
                 if (!phong) {
                     const newPhong = {
                         id: phongTros.length > 0 ? Math.max(...phongTros.map(p => p.id)) + 1 : 1,
                         maPhong: maPhong,
-                        dienTich: 0, // Giá trị mặc định
+                        dienTich: 0, 
                         diaChiCuThe: 'Đang cập nhật',
                         noiThat: 'Đang cập nhật',
-                        giaThue: 0, // Giá trị mặc định
+                        giaThue: giaThuePhong,
                         tinhTrang: 'Đang cho thuê'
                     };
                     phongTros.push(newPhong);
+                    phongSauDat = newPhong;
                     console.log('Tạo phòng mới thành công:', newPhong);
                 } else {
                     phong.tinhTrang = 'Đang cho thuê';
+                    phongSauDat = phong;
                 }
 
-                const phongSauDat = phongTros.find(p => p.maPhong === maPhong);
                 const tongTien = phongSauDat ? phongSauDat.giaThue * thoiHan : 0;
 
                 const newGiaoDich = {

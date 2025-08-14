@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách giao dịch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+    <h1 class="mb-4 text-primary">📋 Danh sách giao dịch</h1>
+    <a th:href="@{/giaodich/add}" class="btn btn-success mb-3">➕ Thêm giao dịch</a>
+
+    <table class="table table-bordered table-hover bg-white shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã KH</th>
+                <th>Mã PT</th>
+                <th>Ngày giao dịch</th>
+                <th>Thời hạn</th>
+                <th>Tổng tiền</th>
+                <th class="text-center">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pt : ${listOfArray}">
+                <td th:text="${gd.makhachhang}"></td>
+                <td th:text="${gd.maphong}"></td>
+                <td th:text="${gd.ngaygiaodich}"></td>
+                <td th:text="${gd.thoihan}"></td>
+                <td th:text="${gd.tongtien}"></td>
+                <td class="text-center">
+                    <a th:href="@{/giaodich/edit/{id}(id=${gd.makhachhang})}" class="btn btn-warning btn-sm">✏ Sửa</a>
+                    <a th:href="@{/giaodich/delete/{id}(id=${gd.makhachhang})}" 
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Bạn có chắc muốn xóa giao dịch này?');">🗑 Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

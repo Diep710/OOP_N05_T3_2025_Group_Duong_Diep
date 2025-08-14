@@ -13,7 +13,7 @@ public class KhachhangAiven {
 
 
      ArrayList<Khachhang> items = new ArrayList<Khachhang>();
-
+//READ- LẤY DANH SÁCH KHÁCH HÀNG
     public ArrayList<Khachhang> khachhangAivenList() {
 
         try {
@@ -73,6 +73,7 @@ public class KhachhangAiven {
         return items;
 
     }
+    //CREATE- THÊM KHÁCH HÀNG MỚI
     public boolean createKhachhang(Khachhang kh) {
         try {
             myDBConnection my = new myDBConnection();

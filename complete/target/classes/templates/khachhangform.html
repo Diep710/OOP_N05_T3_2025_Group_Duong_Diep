@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="formTitle">Form Khách hàng</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f7f9; margin: 0; padding: 20px; }
+        .container { max-width: 500px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h3 { text-align: center; color: #333; }
+        .form-row { margin-bottom: 15px; }
+        .form-row label, .form-row input { display: block; width: 100%; }
+        .form-row label { font-weight: bold; margin-bottom: 5px; }
+        .form-row input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .form-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; }
+        .form-actions button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        .save-btn { background-color: #007bff; color: white; }
+        .back-btn { background-color: #6c757d; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3 id="formHeading">Thêm khách hàng mới</h3>
+        <form id="khachHangForm">
+            <input type="hidden" id="khachHangId">
+            <div class="form-row"><label for="tenKH">Tên khách hàng:</label><input type="text" id="tenKH" required></div>
+            <div class="form-row"><label for="tuoiKH">Tuổi:</label><input type="number" id="tuoiKH"></div>
+            <div class="form-row"><label for="sdtKH">Số điện thoại:</label><input type="text" id="sdtKH" required></div>
+            <div class="form-row"><label for="diaChiKH">Địa chỉ:</label><input type="text" id="diaChiKH"></div>
+            <div class="form-row"><label for="gioiTinhKH">Giới tính:</label><input type="text" id="gioiTinhKH"></div>
+            <div class="form-row"><label for="cccdKH">CCCD:</label><input type="text" id="cccdKH" required></div>
+            <div class="form-actions">
+                <button type="submit" class="save-btn" id="saveBtn">Lưu</button>
+                <button type="button" class="back-btn" onclick="window.location.href='listkhachhang.html'">Quay lại</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formHeading = document.getElementById('formHeading');
+            const khachHangForm = document.getElementById('khachHangForm');
+            const formTitle = document.getElementById('formTitle');
+            const saveBtn = document.getElementById('saveBtn');
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const actionType = urlParams.get('type');
+            const khachHangId = parseInt(urlParams.get('id'));
+
+            const getKhachHangs = () => {
+                const data = localStorage.getItem('khachHangs');
+                return data ? JSON.parse(data) : [];
+            };
+            
+            const saveKhachHangs = (khachHangs) => {
+                localStorage.setItem('khachHangs', JSON.stringify(khachHangs));
+            };
+
+            if (actionType === 'edit' && !isNaN(khachHangId)) {
+                formHeading.textContent = 'Sửa thông tin khách hàng';
+                formTitle.textContent = 'Sửa Khách hàng';
+                const khachHangs = getKhachHangs();
+                const khach = khachHangs.find(k => k.id === khachHangId);
+                if (khach) {
+                    document.getElementById('khachHangId').value = khach.id;
+                    document.getElementById('tenKH').value = khach.ten;
+                    document.getElementById('tuoiKH').value = khach.tuoi || '';
+                    document.getElementById('sdtKH').value = khach.sdt;
+                    document.getElementById('diaChiKH').value = khach.diaChi || '';
+                    document.getElementById('gioiTinhKH').value = khach.gioiTinh || '';
+                    document.getElementById('cccdKH').value = khach.cccd;
+                }
+            } else {
+                formHeading.textContent = 'Thêm khách hàng mới';
+                formTitle.textContent = 'Thêm Khách hàng';
+            }
+
+            khachHangForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const data = {
+                    ten: document.getElementById('tenKH').value,
+                    tuoi: parseInt(document.getElementById('tuoiKH').value) || null,
+                    sdt: document.getElementById('sdtKH').value,
+                    diaChi: document.getElementById('diaChiKH').value,
+                    gioiTinh: document.getElementById('gioiTinhKH').value,
+                    cccd: document.getElementById('cccdKH').value,
+                };
+
+                let khachHangs = getKhachHangs();
+                if (actionType === 'edit' && !isNaN(khachHangId)) {
+                    const khachIndex = khachHangs.findIndex(k => k.id === khachHangId);
+                    if (khachIndex !== -1) {
+                        khachHangs[khachIndex] = { ...khachHangs[khachIndex], ...data };
+                        alert('Sửa thông tin khách hàng thành công!');
+                    }
+                } else {
+                    const newId = khachHangs.length > 0 ? Math.max(...khachHangs.map(kh => kh.id)) + 1 : 1;
+                    const newKhachHang = { id: newId, ...data };
+                    khachHangs.push(newKhachHang);
+                    alert('Thêm khách hàng mới thành công!');
+                }
+
+                saveKhachHangs(khachHangs);
+                window.location.href = 'listkhachhang.html';
+            });
+        });
+    </script>
+</body>
+</html>

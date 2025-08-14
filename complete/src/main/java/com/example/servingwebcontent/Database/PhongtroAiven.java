@@ -11,7 +11,7 @@ import com.example.servingwebcontent.Model.Phongtro;
 @Controller
 public class PhongtroAiven {
          ArrayList<Phongtro> items = new ArrayList<Phongtro>();
-
+//READ- LẤY DANH SÁCH PHÒNG TRỌ
     public ArrayList<Phongtro> phongtroAivenList() {
 
         try {
@@ -62,7 +62,8 @@ public class PhongtroAiven {
         return items;
 
 
-    }
+    } 
+    //CREATE- THÊM PHÒNG TRỌ MỚI
     public boolean createPhongtro(Phongtro pt) {
         try {
             myDBConnection my = new myDBConnection();

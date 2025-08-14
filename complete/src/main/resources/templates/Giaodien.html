@@ -380,7 +380,6 @@
 
             // Nút "Đặt phòng" trên trang chủ
             bookNowBtn.addEventListener('click', () => {
-                // Tự động điền mã phòng đầu tiên còn trống (ví dụ)
                 const phongTrong = phongTros.find(phong => phong.tinhTrang === 'Còn trống');
                 if (phongTrong) {
                     document.getElementById('bookingMaPhong').value = phongTrong.maPhong;
@@ -411,18 +410,13 @@
                 const thoiHan = parseInt(document.getElementById('bookingDuration').value);
 
                 const phong = phongTros.find(p => p.maPhong === maPhong);
-                
-                if (!phong) {
-                    alert('Mã phòng không hợp lệ!');
+
+                if (phong && phong.tinhTrang !== 'Còn trống') {
+                    alert('Phòng này đã có người đặt, bạn vui lòng chọn phòng khác.');
                     return;
                 }
                 
-                if (phong.tinhTrang !== 'Còn trống') {
-                    alert('Phòng đã có người đặt hoặc không thể đặt!');
-                    return;
-                }
-                
-                // Thêm khách hàng mới nếu chưa tồn tại
+                // Tạo khách hàng mới nếu chưa có
                 const existingKhach = khachHangs.find(kh => kh.maKhachHang === maKhach);
                 if (!existingKhach) {
                     const newKhachHang = {
@@ -435,12 +429,26 @@
                     khachHangs.push(newKhachHang);
                 }
 
-                const tongTien = phong ? phong.giaThue * thoiHan : 0;
-                
-                // Cập nhật tình trạng phòng
-                phong.tinhTrang = 'Đang cho thuê';
+                // Xử lý khi mã phòng chưa tồn tại (đặt phòng mới hoàn toàn)
+                if (!phong) {
+                    const newPhong = {
+                        id: phongTros.length > 0 ? Math.max(...phongTros.map(p => p.id)) + 1 : 1,
+                        maPhong: maPhong,
+                        dienTich: 0, // Giá trị mặc định
+                        diaChiCuThe: 'Đang cập nhật',
+                        noiThat: 'Đang cập nhật',
+                        giaThue: 0, // Giá trị mặc định
+                        tinhTrang: 'Đang cho thuê'
+                    };
+                    phongTros.push(newPhong);
+                    console.log('Tạo phòng mới thành công:', newPhong);
+                } else {
+                    phong.tinhTrang = 'Đang cho thuê';
+                }
 
-                // Thêm giao dịch mới
+                const phongSauDat = phongTros.find(p => p.maPhong === maPhong);
+                const tongTien = phongSauDat ? phongSauDat.giaThue * thoiHan : 0;
+
                 const newGiaoDich = {
                     id: giaoDichs.length > 0 ? Math.max(...giaoDichs.map(gd => gd.id)) + 1 : 1,
                     maKhachHang: maKhach,
@@ -451,13 +459,13 @@
                 };
                 giaoDichs.push(newGiaoDich);
                 
-                console.log('Yêu cầu đặt phòng mới:', newGiaoDich);
                 alert(`Yêu cầu đặt phòng mã ${maPhong} của khách hàng ${tenKhach} đã được gửi thành công!`);
 
                 bookRoomFormModal.style.display = 'none';
                 document.getElementById('bookRoomForm').reset();
-                renderPhongTros(); // Cập nhật lại danh sách phòng
-                renderKhachHangs(); // Cập nhật lại danh sách khách hàng
+                renderPhongTros();
+                renderKhachHangs();
+                renderGiaoDichs();
             });
 
             // Mở modal thêm phòng

@@ -23,7 +23,11 @@ public class aivenConnection {
                 String makhachhang = reset.getString("makhachhang");
                 String hovaten = reset.getString("hovaten");
                 String tuoi = reset.getString("tuoi");
-                System.out.println(makhachhang + " " + hovaten + " " + tuoi);
+                String sodienthoai = reset.getString("sodienthoai");
+                String diachi = reset.getString("diachi");
+                String gioitinh = reset.getString("gioitinh");
+                String cccd = reset.getString("cccd");
+                System.out.println(makhachhang + " " + hovaten + " " + tuoi + " " + sodienthoai + " " + diachi + " " + gioitinh + " " + cccd);
 
             }
 

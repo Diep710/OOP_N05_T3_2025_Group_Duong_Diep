@@ -26,20 +26,27 @@
 
 ![Image](anh/z6907860492900_db8251615654a6df681bb20d2fb07786.jpg)
 
+🧩 Các đối tượng trong hệ thống
+| Đối tượng      |         Thuộc tính chính                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------- |
+| **Khách hàng** | Mã khách hàng, Họ và tên, Tuổi, Số điện thoại, Địa chỉ, Giới tính, CCCD                           | 
+| **Phòng trọ**  | Mã phòng, Địa chỉ cụ thể, Diện tích, Nội thất                                                     | 
+| **Giao dịch**  | Mã khách hàng, Mã phòng, Ngày giao dịch, Thời hạn, Tổng tiền                                      | 
 
 📌 Quản Lý Nhà Trọ
+
 📖 Giới thiệu
 
-Hệ thống Quản Lý Nhà Trọ là ứng dụng web hỗ trợ chủ trọ quản lý toàn bộ hoạt động cho thuê phòng một cách hiệu quả và chuyên nghiệp.
+
 Các tính năng chính gồm:
 
-Quản lý phòng trọ: thêm, sửa, xóa, cập nhật trạng thái phòng.
+Đặt phòng trọ
 
-Quản lý khách thuê: thông tin cá nhân, hợp đồng, lịch sử thanh toán.
+Thêm, sửa, xóa thông tin khách hàng
 
-Quản lý hóa đơn: tính tiền điện, nước, dịch vụ, in hóa đơn.
+Thêm, sửa, xóa thông tin phòng trọ
 
-Thống kê doanh thu và tình trạng phòng theo thời gian thực.
+Thêm, sửa, xóa thông tin giao dịch
 
 🎯 Mục tiêu dự án
 
@@ -50,22 +57,13 @@ Giảm thiểu sai sót và tiết kiệm thời gian.
 Dễ sử dụng, có thể truy cập từ mọi thiết bị.
 
 📸 Giao diện
-Trang đăng nhập
+Trang giao dien chính
 
-Trang quản lý phòng
+Trang quản lý khách hàng
 
-Trang quản lý hóa đơn
+Trang quản lý phòng trọ
 
-
-📊 Chức năng chi tiết
-
-Quản lý phòng trọ: thêm, sửa, xóa, tìm kiếm.
-
-Quản lý khách thuê: lưu trữ thông tin, hợp đồng, nhắc hạn thanh toán.
-
-Quản lý hóa đơn: tính toán tự động, in hóa đơn PDF.
-
-Báo cáo thống kê: xuất file Excel/PDF.
+Trang quản lý giao dịch
 
 # Thành viên:
 

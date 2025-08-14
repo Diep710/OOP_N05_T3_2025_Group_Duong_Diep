@@ -1,4 +1,4 @@
-# Ứng dung quản lý nhà trọ
+# Ứng dụng quản lý nhà trọ
 
 # Sơ đồ chức năng
 
@@ -49,21 +49,6 @@ Giảm thiểu sai sót và tiết kiệm thời gian.
 
 Dễ sử dụng, có thể truy cập từ mọi thiết bị.
 
-🛠 Công nghệ sử dụng
-Thành phần	Công nghệ
-Giao diện	HTML5, CSS3, JavaScript
-Backend	PHP
-CSDL	MySQL
-Framework	Bootstrap / Tailwind CSS
-Mô hình	MVC (Model - View - Controller)
-📂 Cấu trúc dự án
-📦 quan-ly-nha-tro
- ┣ 📂 assets          # Hình ảnh, CSS, JS
- ┣ 📂 src             # Mã nguồn PHP
- ┣ 📂 database        # File SQL
- ┣ 📜 index.php       # Trang chính
- ┗ 📜 README.md
-
 📸 Giao diện
 Trang đăng nhập
 
@@ -71,20 +56,6 @@ Trang quản lý phòng
 
 Trang quản lý hóa đơn
 
-🚀 Cài đặt & chạy
-
-Clone dự án:
-
-git clone https://github.com/tenban/quan-ly-nha-tro.git
-
-
-Import file SQL trong thư mục database vào MySQL.
-
-Cấu hình kết nối CSDL trong config.php.
-
-Mở trình duyệt và truy cập:
-
-http://localhost/quan-ly-nha-tro
 
 📊 Chức năng chi tiết
 
@@ -95,10 +66,6 @@ Quản lý khách thuê: lưu trữ thông tin, hợp đồng, nhắc hạn than
 Quản lý hóa đơn: tính toán tự động, in hóa đơn PDF.
 
 Báo cáo thống kê: xuất file Excel/PDF.
-
-📜 Giấy phép
-
-Dự án thuộc bản quyền của [Tên nhóm / cá nhân] – chỉ sử dụng cho mục đích học tập và nghiên cứu.
 
 # Thành viên:
 

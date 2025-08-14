@@ -26,52 +26,79 @@
 
 ![Image](anh/z6907860492900_db8251615654a6df681bb20d2fb07786.jpg)
 
-# Đối tượng
 
--Khách Hàng
+📌 Quản Lý Nhà Trọ
+📖 Giới thiệu
 
--Phòng trọ
+Hệ thống Quản Lý Nhà Trọ là ứng dụng web hỗ trợ chủ trọ quản lý toàn bộ hoạt động cho thuê phòng một cách hiệu quả và chuyên nghiệp.
+Các tính năng chính gồm:
 
--Giao dịch(Khách thuê trọ)
+Quản lý phòng trọ: thêm, sửa, xóa, cập nhật trạng thái phòng.
 
-# Miêu tả đối tượng
--Khách hàng
+Quản lý khách thuê: thông tin cá nhân, hợp đồng, lịch sử thanh toán.
 
-mã khách hàng
+Quản lý hóa đơn: tính tiền điện, nước, dịch vụ, in hóa đơn.
 
-họ và tên
+Thống kê doanh thu và tình trạng phòng theo thời gian thực.
 
-tuổi
+🎯 Mục tiêu dự án
 
-số điện thoại
+Tối ưu hóa quy trình quản lý nhà trọ.
 
-địa chỉ 
+Giảm thiểu sai sót và tiết kiệm thời gian.
 
-giới tính
+Dễ sử dụng, có thể truy cập từ mọi thiết bị.
 
-cmnd
+🛠 Công nghệ sử dụng
+Thành phần	Công nghệ
+Giao diện	HTML5, CSS3, JavaScript
+Backend	PHP
+CSDL	MySQL
+Framework	Bootstrap / Tailwind CSS
+Mô hình	MVC (Model - View - Controller)
+📂 Cấu trúc dự án
+📦 quan-ly-nha-tro
+ ┣ 📂 assets          # Hình ảnh, CSS, JS
+ ┣ 📂 src             # Mã nguồn PHP
+ ┣ 📂 database        # File SQL
+ ┣ 📜 index.php       # Trang chính
+ ┗ 📜 README.md
 
--Phòng trọ
+📸 Giao diện
+Trang đăng nhập
 
-mã phòng
+Trang quản lý phòng
 
-diện tích
+Trang quản lý hóa đơn
 
-địa chỉ cụ thể
+🚀 Cài đặt & chạy
 
-nội thất
+Clone dự án:
 
--Giao dịch(khách thuê trọ)
+git clone https://github.com/tenban/quan-ly-nha-tro.git
 
-mã khách hàng
 
-mã phòng
+Import file SQL trong thư mục database vào MySQL.
 
-ngày giao dịch
+Cấu hình kết nối CSDL trong config.php.
 
-thời hạn
+Mở trình duyệt và truy cập:
 
-tổng tiền
+http://localhost/quan-ly-nha-tro
+
+📊 Chức năng chi tiết
+
+Quản lý phòng trọ: thêm, sửa, xóa, tìm kiếm.
+
+Quản lý khách thuê: lưu trữ thông tin, hợp đồng, nhắc hạn thanh toán.
+
+Quản lý hóa đơn: tính toán tự động, in hóa đơn PDF.
+
+Báo cáo thống kê: xuất file Excel/PDF.
+
+📜 Giấy phép
+
+Dự án thuộc bản quyền của [Tên nhóm / cá nhân] – chỉ sử dụng cho mục đích học tập và nghiên cứu.
 
 # Thành viên:
 

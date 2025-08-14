@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ Quản lý Phòng trọ</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">🏠 Quản lý Phòng trọ</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/khachhanglist">Danh sách Khách hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/phongtrolist">Danh sách Phòng trọ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/giaodichlist">Danh sách Giao dịch</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <title>Thêm/Sửa khách hàng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+    <h1 class="text-primary mb-4" 
+        th:text="${khachhang.makhachhang} != null ? '✏ Sửa khách hàng' : '➕ Thêm khách hàng'"></h1>
+
+    <form th:action="${khachhang.makhachhang} != null ? @{/khachhang/update} : @{/khachhang/save}" 
+          method="post" th:object="${khachhang}" class="bg-white p-4 rounded shadow-sm">
+
+        <div class="mb-3">
+            <label class="form-label">Mã khách hàng</label>
+            <input type="text" th:field="*{makhachhang}" class="form-control" 
+                   th:readonly="${khachhang.makhachhang} != null" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Họ và tên</label>
+            <input type="text" th:field="*{hovaten}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Tuổi</label>
+            <input type="number" th:field="*{tuoi}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Số điện thoại</label>
+            <input type="text" th:field="*{sodienthoai}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Địa chỉ</label>
+            <input type="text" th:field="*{diachi}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Giới tính</label>
+            <select th:field="*{gioitinh}" class="form-select" required>
+                <option value="">-- Chọn giới tính --</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CCCD</label>
+            <input type="text" th:field="*{cccd}" class="form-control" required>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">💾 Lưu</button>
+            <a th:href="@{/khachhanglist}" class="btn btn-secondary">⬅ Quay lại</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

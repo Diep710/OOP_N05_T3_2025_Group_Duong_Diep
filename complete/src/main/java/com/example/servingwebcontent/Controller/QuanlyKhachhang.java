@@ -1,6 +1,5 @@
 package com.example.servingwebcontent.Controller;
 import com.example.servingwebcontent.Database.KhachhangAiven;
-import com.example.servingwebcontent.Database.insertToAiven;
 import com.example.servingwebcontent.Model.Khachhang;
 
 import org.springframework.stereotype.Controller;
@@ -17,46 +16,7 @@ import java.util.ArrayList;
 @Controller
 public class QuanlyKhachhang {
 
-    @GetMapping("/khachhang")
-	public String Khachhang(Model model) {
-		model.addAttribute("Khachhang", new Khachhang());
-
-		return "Giaodien2";
-	}
-
-	@PostMapping("/khachhangsave")
-	public String SaveData(Model model, @ModelAttribute Khachhang kh) {
-		
-
-		model.addAttribute("Khachhang", kh); // Add populated object back to model for display
-
-		try {
-
-
-			Khachhang u = new Khachhang();
-			u.setMakhachhang(kh.getMakhachhang());
-			u.setHovaten(kh.getHovaten());
-			u.setTuoi(kh.getTuoi());
-
-			ArrayList<Khachhang> al = new ArrayList<Khachhang>();
-			al.add(u);
-
-			insertToAiven iu = new insertToAiven();
-			iu.insertToAivenDb(u);
-			model.addAttribute("listOfArray", al);
-
-		} catch (RuntimeException e) {
-
-			System.out.println(e);
-
-		} finally {
-			System.out.println("done");
-
-		}
-
-		return "khachhanglist";
-	}
-
+   
 
     
     @GetMapping("/khachhanglist")

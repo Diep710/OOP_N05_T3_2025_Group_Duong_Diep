@@ -14,6 +14,7 @@ public class KhachhangAiven {
 
      ArrayList<Khachhang> items = new ArrayList<Khachhang>();
 
+     // READ - Lấy danh sách khách hàng
     public ArrayList<Khachhang> khachhangAivenList() {
 
         try {
@@ -73,6 +74,8 @@ public class KhachhangAiven {
         return items;
 
     }
+    // CREATE - Thêm khách hàng mới
+
     public boolean createKhachhang(Khachhang kh) {
         try {
             myDBConnection my = new myDBConnection();

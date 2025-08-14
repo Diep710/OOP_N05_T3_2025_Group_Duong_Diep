@@ -27,6 +27,12 @@ public class QuanlyPhongtro {
 
 		return "phongtrolist";
 	}
+    @GetMapping("/phongtro/add")
+    public String showAddForm(Model model) {
+        model.addAttribute("phongtro", new Phongtro());
+        return "phongtro_form"; // form HTML thêm khách hàng
+    }
+
 	// CREATE - Xử lý thêm phòng trọ
     @PostMapping("/phongtro/save")
     public String savePhongtro(@ModelAttribute("phongtro") Phongtro pt) {

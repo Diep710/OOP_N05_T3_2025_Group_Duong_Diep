@@ -10,6 +10,7 @@ import com.example.servingwebcontent.Model.Giaodich;
 @Controller
 public class GiaodichAiven {
              ArrayList<Giaodich> items = new ArrayList<Giaodich>();
+             // READ - Lấy danh sách giao dịch
 
     public ArrayList<Giaodich> giaodichAivenList() {
 
@@ -64,6 +65,7 @@ public class GiaodichAiven {
         return items;
 
     }
+    // CREATE - Thêm giao dịch mới
     public boolean createGiaodich(Giaodich gd) {
         try {
             myDBConnection my = new myDBConnection();

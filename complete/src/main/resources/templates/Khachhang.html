@@ -1,78 +1,167 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <title>Hello, OOP class !</title>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.5/dist/bootstrap-table.min.css">
-
-   
-    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.5/dist/bootstrap-table.min.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Khách hàng</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #F4F7F9; margin: 0; padding: 0; }
+        header { background-color: #1a4d2e; color: white; padding: 1rem 2rem; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: bold; font-size: 1.5rem; text-decoration: none; color: white; }
+        .search-bar { padding: 8px; border-radius: 5px; border: none; }
+        main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .data-table th, .data-table td { text-align: left; padding: 12px 15px; border-bottom: 1px solid #ddd; }
+        .data-table th { background-color: #f2f2f2; }
+        .action-buttons button { margin-right: 5px; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; color: white; }
+        .edit-btn { background-color: #2196F3; }
+        .delete-btn { background-color: #f44336; }
+        button#addKhachHangBtn { background-color: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+        .modal { position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); display: none; align-items: center; justify-content: center; }
+        .modal-content { background-color: #fefefe; padding: 20px; border: 1px solid #888; width: 500px; border-radius: 10px; }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .form-row { margin-bottom: 15px; }
+        .form-row label { font-weight: bold; margin-bottom: 5px; display: block; }
+        .form-row input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 100%; }
+        .form-row button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; }
+    </style>
 </head>
-
-
-
 <body>
-    <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-        <div class="bg-dark p-4">
-          <h5 class="text-body-emphasis h4">Phenikaa Univesity</h5>
-          <span class="text-body-secondary">OOP Introduction.</span>
-        </div>
-      </div>
-      <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </nav>
 
-      <a href="/"><button type="button" class="btn btn-outline-info">HOME</button></a>
+<header>
+    <nav class="navbar">
+        <a href="#" class="logo">DiepDuong</a>
+        <input type="text" class="search-bar" id="searchKhachHang" placeholder="Tìm kiếm khách hàng...">
+    </nav>
+</header>
 
-    <table class="table table-striped">
-        <thead >
-            <tr ><p style="font-size:xx-large; color:darkcyan ;text-align: center;">List of Khách hàng</p></tr>
+<main>
+    <h2>Danh sách Khách hàng</h2>
+    <button id="addKhachHangBtn">Thêm khách hàng</button>
+    <table class="data-table">
+        <thead>
             <tr>
-                <th><i class="bi bi-person-vcard"></i> Khách hàng ID </th>
-                <th><i class="bi bi-person-circle"></i> Họ và tên </th>
-                <th> <i class="bi bi-house-heart"></i> Tuổi </th>
-                <th> <i class="bi bi-house-heart"></i> Số điện thoại </th>
-                 <th> <i class="bi bi-house-heart"></i> Địa chỉ </th>
-                  <th> <i class="bi bi-house-heart"></i> Giới tính </th>
-                   <th> <i class="bi bi-house-heart"></i> Cccd </th>
-                <th> <i class="bi bi-brush"></i>Edit  </th>
-                <th> <i class="bi bi-calendar2-x"></i> Delete </th>
-                
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Tuổi</th>
+                <th>SĐT</th>
+                <th>Địa chỉ</th>
+                <th>Giới tính</th>
+                <th>CCCD</th>
+                <th>Thao tác</th>
             </tr>
         </thead>
-        <tbody>
-
-            <tr th:each="ListOfKhachhang : ${ListOfKhachhang}">
-                <td data-sortable="true"><span th:text="${ListOfKhachhang.makhachhang}"> makhachhang </span></td>
-                <td><span th:text="${ListOfKhachhang.hovaten}"> hovaten </span></td>
-                <td><span th:text="${ListOfKhachhang.tuoi}"> tuoi </span></td>
-                <td><span th:text="${ListOfKhachhang.sodienthoai}"> sodienthoai </span></td>
-                <td><span th:text="${ListOfKhachhang.diachi}"> diachi </span></td>
-                <td><span th:text="${ListOfKhachhang.gioitinh}"> gioitinh </span></td>
-                <td><span th:text="${ListOfKhachhang.cccd}"> cccd </span></td>
-                              
-                <td><button type="button" class="btn btn-success bi bi-brush"> </button></td>
-                <td><button type="button" class="btn btn-danger bi bi-calendar2-x"> </button></td>
-                
-
-
-            </tr>
-        </tbody>
+        <tbody id="khachHangTableBody"></tbody>
     </table>
+</main>
 
+<!-- Modal thêm khách hàng -->
+<div id="addKhachHangFormModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" data-modal="addKhachHangFormModal">&times;</span>
+        <h3>Thêm khách hàng mới</h3>
+        <form id="addKhachHangForm">
+            <div class="form-row"><label for="newTenKH">Tên khách hàng:</label><input type="text" id="newTenKH" required></div>
+            <div class="form-row"><label for="newTuoiKH">Tuổi:</label><input type="number" id="newTuoiKH"></div>
+            <div class="form-row"><label for="newSdtKH">Số điện thoại:</label><input type="text" id="newSdtKH" required></div>
+            <div class="form-row"><label for="newDiaChiKH">Địa chỉ:</label><input type="text" id="newDiaChiKH"></div>
+            <div class="form-row"><label for="newGioiTinhKH">Giới tính:</label><input type="text" id="newGioiTinhKH"></div>
+            <div class="form-row"><label for="newCccdKH">CCCD:</label><input type="text" id="newCccdKH" required></div>
+            <button type="submit">Thêm khách hàng</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const khachHangTableBody = document.getElementById('khachHangTableBody');
+        const addKhachHangFormModal = document.getElementById('addKhachHangFormModal');
+        const searchInput = document.getElementById('searchKhachHang');
+
+        let khachHangs = [
+            { id: 1, ten: 'Nguyễn Văn A', tuoi: 25, sdt: '0987654321', diaChi: '111 Yên Nghĩa', gioiTinh: 'Nam', cccd: '001234567890' },
+            { id: 2, ten: 'Trần Thị B', tuoi: 22, sdt: '0912345678', diaChi: '222 Hà Đông', gioiTinh: 'Nữ', cccd: '001987654321' },
+            { id: 3, ten: 'Lê Văn C', tuoi: 28, sdt: '0901234567', diaChi: '333 Thanh Xuân', gioiTinh: 'Nam', cccd: '001112233445' }
+        ];
+
+        const renderKhachHangs = (filteredKhachHangs = khachHangs) => {
+            khachHangTableBody.innerHTML = '';
+            filteredKhachHangs.forEach(khach => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${khach.id}</td>
+                    <td>${khach.ten}</td>
+                    <td>${khach.tuoi}</td>
+                    <td>${khach.sdt}</td>
+                    <td>${khach.diaChi}</td>
+                    <td>${khach.gioiTinh}</td>
+                    <td>${khach.cccd}</td>
+                    <td class="action-buttons">
+                        <button class="edit-btn">Sửa</button>
+                        <button class="delete-btn" data-id="${khach.id}">Xóa</button>
+                    </td>
+                `;
+                khachHangTableBody.appendChild(row);
+            });
+        };
+
+        // Tìm kiếm khách hàng
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredKhachHangs = khachHangs.filter(khach =>
+                khach.ten.toLowerCase().includes(searchTerm) ||
+                khach.sdt.toLowerCase().includes(searchTerm) ||
+                khach.diaChi.toLowerCase().includes(searchTerm) ||
+                khach.cccd.toLowerCase().includes(searchTerm)
+            );
+            renderKhachHangs(filteredKhachHangs);
+        });
+
+        // Mở modal thêm khách hàng
+        document.getElementById('addKhachHangBtn').addEventListener('click', () => {
+            addKhachHangFormModal.style.display = 'flex';
+        });
+
+        // Đóng modal
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const modalId = e.target.dataset.modal;
+                document.getElementById(modalId).style.display = 'none';
+            });
+        });
+
+        // Xử lý form thêm khách hàng
+        document.getElementById('addKhachHangForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newKhachHang = {
+                id: khachHangs.length > 0 ? Math.max(...khachHangs.map(kh => kh.id)) + 1 : 1,
+                ten: document.getElementById('newTenKH').value,
+                tuoi: parseInt(document.getElementById('newTuoiKH').value),
+                sdt: document.getElementById('newSdtKH').value,
+                diaChi: document.getElementById('newDiaChiKH').value,
+                gioiTinh: document.getElementById('newGioiTinhKH').value,
+                cccd: document.getElementById('newCccdKH').value,
+            };
+            khachHangs.push(newKhachHang);
+            addKhachHangFormModal.style.display = 'none';
+            document.getElementById('addKhachHangForm').reset();
+            renderKhachHangs();
+            alert('Thêm khách hàng mới thành công!');
+        });
+
+        // Xóa khách hàng
+        khachHangTableBody.addEventListener('click', (e) => {
+            if (e.target.classList.contains('delete-btn')) {
+                const id = parseInt(e.target.dataset.id);
+                khachHangs = khachHangs.filter(kh => kh.id !== id);
+                renderKhachHangs();
+            }
+        });
+
+        renderKhachHangs();
+    });
+</script>
 
 </body>
-
 </html>

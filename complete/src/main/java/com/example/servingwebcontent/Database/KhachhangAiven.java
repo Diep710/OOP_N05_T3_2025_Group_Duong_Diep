@@ -13,12 +13,10 @@ public class KhachhangAiven {
 
 
      ArrayList<Khachhang> items = new ArrayList<Khachhang>();
-<<<<<<< HEAD
 
-     // READ - Lấy danh sách khách hàng
-=======
+
 //READ- LẤY DANH SÁCH KHÁCH HÀNG
->>>>>>> c8561b595adc7afa7fdb9a5b8604628239715a40
+
     public ArrayList<Khachhang> khachhangAivenList() {
 
         try {
@@ -78,12 +76,9 @@ public class KhachhangAiven {
         return items;
 
     }
-<<<<<<< HEAD
-    // CREATE - Thêm khách hàng mới
 
-=======
     //CREATE- THÊM KHÁCH HÀNG MỚI
->>>>>>> c8561b595adc7afa7fdb9a5b8604628239715a40
+
     public boolean createKhachhang(Khachhang kh) {
         try {
             myDBConnection my = new myDBConnection();

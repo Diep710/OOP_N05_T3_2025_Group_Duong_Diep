@@ -11,12 +11,9 @@ import com.example.servingwebcontent.Model.Phongtro;
 @Controller
 public class PhongtroAiven {
          ArrayList<Phongtro> items = new ArrayList<Phongtro>();
-<<<<<<< HEAD
-         // READ - Lấy danh sách phòng trọ
 
-=======
 //READ- LẤY DANH SÁCH PHÒNG TRỌ
->>>>>>> c8561b595adc7afa7fdb9a5b8604628239715a40
+
     public ArrayList<Phongtro> phongtroAivenList() {
 
         try {

@@ -10,12 +10,9 @@ import com.example.servingwebcontent.Model.Giaodich;
 @Controller
 public class GiaodichAiven {
              ArrayList<Giaodich> items = new ArrayList<Giaodich>();
-<<<<<<< HEAD
-             // READ - Lấy danh sách giao dịch
 
-=======
 //READ- LẤY DANH SACH GIAO DỊCH
->>>>>>> c8561b595adc7afa7fdb9a5b8604628239715a40
+
     public ArrayList<Giaodich> giaodichAivenList() {
 
         try {
@@ -69,11 +66,9 @@ public class GiaodichAiven {
         return items;
 
     }
-<<<<<<< HEAD
-    // CREATE - Thêm giao dịch mới
-=======
+
     //CREATE- THÊM GIAO DỊCH MỚI
->>>>>>> c8561b595adc7afa7fdb9a5b8604628239715a40
+
     public boolean createGiaodich(Giaodich gd) {
         try {
             myDBConnection my = new myDBConnection();

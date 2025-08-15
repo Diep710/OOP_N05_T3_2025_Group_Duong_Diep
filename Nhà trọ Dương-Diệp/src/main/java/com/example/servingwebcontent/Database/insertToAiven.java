@@ -44,10 +44,10 @@ public class insertToAiven {
                 pst.setString(1, mkh);
                 pst.setString(2, hvt);
                 pst.setString(3, t);
-                pst.setString(3, sdt);
-                pst.setString(3, dc);
-                pst.setString(3, gt);
-                pst.setString(3, cc);
+                pst.setString(4, sdt);
+                pst.setString(5, dc);
+                pst.setString(6, gt);
+                pst.setString(7, cc);
                 pst.executeUpdate();
             }
             System.out.println("Display data from database: ");

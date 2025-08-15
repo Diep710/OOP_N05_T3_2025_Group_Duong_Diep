@@ -1,4 +1,4 @@
-# Ứng dung quản lý nhà trọ
+# Ứng dụng quản lý nhà trọ
 
 # Sơ đồ chức năng
 
@@ -26,52 +26,44 @@
 
 ![Image](anh/z6907860492900_db8251615654a6df681bb20d2fb07786.jpg)
 
-# Đối tượng
+🧩 Các đối tượng trong hệ thống
+| Đối Tượng      |         Mô Tả                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------- |
+| **Khách hàng** | Mã khách hàng, Họ và tên, Tuổi, Số điện thoại, Địa chỉ, Giới tính, CCCD                           | 
+| **Phòng trọ**  | Mã phòng, Địa chỉ cụ thể, Diện tích, Nội thất                                                     | 
+| **Giao dịch**  | Mã khách hàng, Mã phòng, Ngày giao dịch, Thời hạn, Tổng tiền                                      | 
 
--Khách Hàng
+📌 Quản Lý Nhà Trọ
 
--Phòng trọ
+📖 Giới thiệu
 
--Giao dịch(Khách thuê trọ)
 
-# Miêu tả đối tượng
--Khách hàng
+Các tính năng chính gồm:
 
-mã khách hàng
+Đặt phòng trọ
 
-họ và tên
+Thêm, sửa, xóa thông tin khách hàng
 
-tuổi
+Thêm, sửa, xóa thông tin phòng trọ
 
-số điện thoại
+Thêm, sửa, xóa thông tin giao dịch
 
-địa chỉ 
+🎯 Mục tiêu dự án
 
-giới tính
+Tối ưu hóa quy trình quản lý nhà trọ.
 
-cmnd
+Giảm thiểu sai sót và tiết kiệm thời gian.
 
--Phòng trọ
+Dễ sử dụng, có thể truy cập từ mọi thiết bị.
 
-mã phòng
+📸 Giao diện
+Trang giao dien chính
 
-diện tích
+Trang quản lý khách hàng
 
-địa chỉ cụ thể
+Trang quản lý phòng trọ
 
-nội thất
-
--Giao dịch(khách thuê trọ)
-
-mã khách hàng
-
-mã phòng
-
-ngày giao dịch
-
-thời hạn
-
-tổng tiền
+Trang quản lý giao dịch
 
 # Thành viên:
 
